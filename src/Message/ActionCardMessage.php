@@ -48,14 +48,14 @@ class ActionCardMessage extends Message
      * 设置整体跳转类型参数
      *
      * @param string $singleTitle 单个按钮的方案。(设置此项和singleURL后btns无效。)
-     * @param string $singleURL   点击singleTitle按钮触发的URL
+     * @param string $singleUrl   点击singleTitle按钮触发的URL
      *
      * @return $this
      */
-    public function setSingle(string $singleTitle, string $singleURL): self
+    public function setSingle(string $singleTitle, string $singleUrl): self
     {
         $this->message['actionCard']['singleTitle'] = $singleTitle;
-        $this->message['actionCard']['singleURL'] = $singleURL;
+        $this->message['actionCard']['singleURL'] = $singleUrl;
         return $this;
     }
 
@@ -63,15 +63,15 @@ class ActionCardMessage extends Message
      * 设置独立跳转类型按钮参数
      *
      * @param string $title     按钮方案
-     * @param string $actionURL 点击按钮触发的URL
+     * @param string $actionUrl 点击按钮触发的URL
      *
      * @return ActionCardMessage
      */
-    public function addButton(string $title, string $actionURL): self
+    public function addButton(string $title, string $actionUrl): self
     {
         $this->message['actionCard']['btns'][] = [
             'title' => $title,
-            'actionURL' => $actionURL
+            'actionURL' => $actionUrl
         ];
         return $this;
     }

@@ -2,6 +2,8 @@
 
 namespace Calchen\LaravelDingtalkRobot\Message;
 
+use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
+
 /**
  * 文本类型消息
  *
@@ -33,8 +35,24 @@ class TextMessage extends Message
         ];
     }
 
-    public function at($mobiles = [], $atAll = false): Message
+    /**
+     * 通过手机号码指定“被@人列表”
+     *
+     * @param      $mobiles
+     * @param bool $atAll
+     *
+     * @return Message
+     * @throws InvalidArgumentException
+     */
+    public function at($mobiles, bool $atAll = false): Message
     {
+        if (!is_array($mobiles) && !is_string($mobiles)) {
+            throw new InvalidArgumentException('$mobiles should be string or array');
+        }
+        if (!is_array($mobiles)) {
+            $mobiles = [$mobiles];
+        }
+
         return $this->setAt($mobiles, $atAll);
     }
 }

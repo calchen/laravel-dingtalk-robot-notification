@@ -2,7 +2,7 @@
 
 namespace Calchen\LaravelDingtalkRobot\Exception;
 
-class InvalidConfigurationException extends Exception
+class InvalidArgumentException extends Exception
 {
     //
 }

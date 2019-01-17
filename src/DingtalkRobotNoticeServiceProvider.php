@@ -49,7 +49,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('dingtalk.robot', function ($app) {
+        $this->app->singleton(DingtalkRobot::class, function ($app) {
             return new DingtalkRobot();
         });
     }

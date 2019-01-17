@@ -10,7 +10,7 @@ class FeedCardMessage extends Message
 
     }
 
-    public function setMessage()
+    public function setMessage(): void
     {
         $this->message = [
             'feedCard' => [
@@ -20,7 +20,14 @@ class FeedCardMessage extends Message
         ];
     }
 
-    public function addLinks($title, $messageUrl, $picUrl)
+    /**
+     * @param string $title
+     * @param string $messageUrl
+     * @param string $picUrl
+     *
+     * @return FeedCardMessage
+     */
+    public function addLink(string $title, string $messageUrl, string $picUrl): self
     {
         $this->message['feedCard']['links'][] = [
             'title' => $title,
