@@ -1,0 +1,33 @@
+{
+    "name": "calchen\/laravel-dingtalk-robot-notification",
+    "description": "dingtalk robot message notifications for Laravel\/Lumen",
+    "keywords": ["laravel", "lumen", "dingtalk", "laravel notification"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "陈恺垣",
+            "email": "contact@chenky.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "~6.0",
+        "phpunit/phpunit": "^7.0",
+        "mockery/mockery": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Calchen\\LaravelDingtalkRobot\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Calchen\\LaravelDingtalkRobot\\DingtalkRobotNoticeServiceProvider"
+            ]
+        }
+    }
+}
