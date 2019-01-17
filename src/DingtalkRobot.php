@@ -104,10 +104,6 @@ class DingtalkRobot
      */
     public function send(): string
     {
-        if (!$this->config['enabled']) {
-            return false;
-        }
-
         if (is_null($this->message)) {
             throw new InvalidConfigurationException('Please set message object');
         }
