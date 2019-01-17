@@ -8,6 +8,12 @@ use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
 use GuzzleHttp\Client;
 use Calchen\LaravelDingtalkRobot\Message\Message;
 
+/**
+ * 钉钉群消息机器 API
+ *
+ * Class DingtalkRobot
+ * @package Calchen\LaravelDingtalkRobot
+ */
 class DingtalkRobot
 {
     protected $config;
@@ -21,6 +27,8 @@ class DingtalkRobot
     protected $robotUrl = "https://oapi.dingtalk.com/robot/send";
 
     /**
+     * 消息对象
+     *
      * @var Message
      */
     protected $message = null;
@@ -34,19 +42,21 @@ class DingtalkRobot
     }
 
     /**
+     * 指定机器人名称，默认为 default
+     *
      * @param string $name
      *
      * @return $this
      * @throws \Exception
      */
-    public function connection($name = 'default')
+    public function connection($name = 'default'): self
     {
         $configs = config('dingtalk_robot');
 
-        if (!isset(config('dingtalk_robot')[$name])) {
-            throw new \Exception("Connection name: {$name} not exist. Please check your config file dingtalk_robot.php");
+        if (!isset($configs[$name])) {
+            throw new InvalidConfigurationException("Connection name: {$name} not exist. Please check your setting in dingtalk_robot.php");
         }
-        
+
         $this->config = $configs[$name];
         $this->accessToken = $configs[$name]['access_token'];
 
@@ -54,20 +64,26 @@ class DingtalkRobot
     }
 
     /**
-     * @param $message
+     * 设置 message 对象
+     *
+     * @param Message $message
      *
      * @return $this
+     * @throws \Exception
      */
-    public function setMessage(Message $message)
+    public function setMessage(Message $message): self
     {
         $this->message = $message;
+        $this->connection($message->getConnection());
         return $this;
     }
 
     /**
+     * 获取 message 对象的内容
+     *
      * @return array
      */
-    public function getMessage(): ?Message
+    public function getMessage(): array
     {
         return $this->message->getMessage();
     }
@@ -86,7 +102,7 @@ class DingtalkRobot
      * @return bool|string
      * @throws Exception
      */
-    public function send()
+    public function send(): string
     {
         if (!$this->config['enabled']) {
             return false;

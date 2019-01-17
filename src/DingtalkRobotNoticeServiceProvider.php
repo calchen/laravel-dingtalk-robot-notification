@@ -22,7 +22,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
     }
 
     /**
-     * Setup the config.
+     * 处理配置项
      *
      * @return void
      */
@@ -43,7 +43,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register services.
+     * 注册服务
      *
      * @return void
      */
