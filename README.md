@@ -2,10 +2,10 @@
 
 <p align="center"> 钉钉群机器人 Laravel/Lumen 扩展包 </p>
 <p align="center">
-    [![](https://img.shields.io/packagist/dt/doctrine/orm.svg)](https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification)
+    <img src="https://img.shields.io/packagist/v/calchen/laravel-dingtalk-robot-notification.svg">
+    <img src="https://img.shields.io/packagist/dt/calchen/laravel-dingtalk-robot-notification.svg">
+    <img src="https://img.shields.io/github/license/calchen/laravel-dingtalk-robot-notification.svg">
 </p>
-
-https://poser.pugx.org/
 
 ## 功能说明
 实现了 [钉钉群机器人](https://open-doc.dingtalk.com/docs/doc.htm?treeId=257&articleId=105733&docType=1) 的消息推送功能，并通过自定义通道使得机器人的消息推送也可以使用 Laravel 的消息通知（Notification）进行发送，同时对也 Lumen 也进行了支持。
