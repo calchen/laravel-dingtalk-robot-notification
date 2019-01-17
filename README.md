@@ -1,4 +1,4 @@
-<h1 align="center"> laravel-dingtalk-robot-notification </h1>
+<h1 align="center"> Laravel-dingtalk-robot-notification </h1>
 
 <p align="center"> 钉钉群机器人 Laravel/Lumen 扩展包 </p>
 
@@ -69,7 +69,7 @@ $app->withFacades(true, [
 
 ## 使用消息通知（Notification）
 
-Tips：为了方便快速调试功能，项目内置了一个使用了  Notifiable Trait 的类：Calchen\LaravelDingtalkRobot\Robot ，以下均以此对象为例，实际开发中请务必根据您项目情况进行对应处理。
+Tips：为了方便快速调试功能，内置了一个使用了  Notifiable Trait 的类：Calchen\LaravelDingtalkRobot\Robot ，以下均以此对象为例，实际开发中请务必根据您项目情况进行对应处理。
 
 首先需要先创建一个 TestDingtalkNotification ，如果是 Laravel 可通过 artisan 命令创建
 
@@ -147,7 +147,10 @@ public function toDingTalkRobot($notifiable)
     $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
     
     // 可@某人或某些人
-    $message->at('156****9051');  // $message->at(['156****9051', '156****9052']);
+    $message->at('1825718XXXX');  // $message->at(['1825718XXXX', '1825718XXXY']);
+    
+    // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
+    $message->setConnection('robot_dev');
     
     return  $message;
 }
@@ -176,7 +179,7 @@ public function toDingTalkRobot($notifiable)
     $message = new MarkdownMessage('杭州天气', "#### 杭州天气  \n > 9度，@1825718XXXX 西北风1级，空气良89，相对温度73%\n\n > ![screenshot](http://i01.lw.aliimg.com/media/lALPBbCc1ZhJGIvNAkzNBLA_1200_588.png)\n  > ###### 10点20分发布 [天气](http://www.thinkpage.cn/) ");
     
     // 可@某人或某些人
-    $message->at('156****9051');  // $message->at(['156****9051', '156****9052']);
+    $message->at('1825718XXXX');  // $message->at(['1825718XXXX', '156****9052']);
     
     return  $message;
 }
@@ -244,7 +247,7 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
 
 // 可@某人或某些人
-$message->at('156****9051');  // $message->at(['156****9051', '156****9052']);
+$message->at('1825718XXXX');  // $message->at(['1825718XXXX', '156****9052']);
 
 dingtalk_robot()->setMessage($message)->send();
 ```
@@ -257,7 +260,7 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
 
 // 可@某人或某些人
-$message->at('156****9051');  // $message->at(['156****9051', '156****9052']);
+$message->at('1825718XXXX');  // $message->at(['1825718XXXX', '156****9052']);
 
 app(DingtalkRobot::class)->setMessage($message)->send();
 ```
@@ -270,7 +273,7 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
 
 // 可@某人或某些人
-$message->at('156****9051');  // $message->at(['156****9051', '156****9052']); 
+$message->at('1825718XXXX');  // $message->at(['1825718XXXX', '156****9052']); 
 
 (new DingtalkRobot)->setMessage($message)->send();
 ```
