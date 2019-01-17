@@ -2,15 +2,14 @@
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 
-if (!function_exists('dingtalk_robot')){
-
+if (!function_exists('dingtalk_robot')) {
     /**
-     * 获取钉钉群机器人
+     * 获取钉钉群机器人接口
      *
      * @return DingtalkRobot
      */
-    function dingtalk_robot(){
-
+    function dingtalk_robot()
+    {
         $arguments = func_get_args();
 
         $dingTalk = app(DingtalkRobot::class);

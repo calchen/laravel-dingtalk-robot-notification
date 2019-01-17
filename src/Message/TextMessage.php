@@ -15,7 +15,7 @@ class TextMessage extends Message
     /**
      * DingtalkTextMessage constructor.
      *
-     * @param string $content
+     * @param string $content 消息内容
      */
     public function __construct(string $content)
     {
@@ -23,7 +23,7 @@ class TextMessage extends Message
     }
 
     /**
-     * @param string $content
+     * @param string $content 消息内容
      */
     public function setMessage(string $content): void
     {
@@ -38,13 +38,13 @@ class TextMessage extends Message
     /**
      * 通过手机号码指定“被@人列表”
      *
-     * @param      $mobiles
-     * @param bool $atAll
+     * @param string|array $mobiles 被@人的手机号(在text内容里要有@手机号)
+     * @param bool         $atAll   @所有人时:true,否则为:false
      *
      * @return Message
      * @throws InvalidArgumentException
      */
-    public function at($mobiles, bool $atAll = false): Message
+    public function at($mobiles, bool $atAll = false): self
     {
         if (!is_array($mobiles) && !is_string($mobiles)) {
             throw new InvalidArgumentException('$mobiles should be string or array');
@@ -53,6 +53,13 @@ class TextMessage extends Message
             $mobiles = [$mobiles];
         }
 
-        return $this->setAt($mobiles, $atAll);
+        $this->at = [
+            'at' => [
+                'atMobiles' => $mobiles,
+                'isAtAll' => $atAll
+            ]
+        ];
+
+        return $this;
     }
 }

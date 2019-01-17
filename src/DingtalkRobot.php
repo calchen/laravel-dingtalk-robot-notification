@@ -89,6 +89,8 @@ class DingtalkRobot
     }
 
     /**
+     * 获取附带 access_token 的 webhook Url
+     *
      * @return string
      */
     protected function getRobotUrl(): string
@@ -97,7 +99,7 @@ class DingtalkRobot
     }
 
     /**
-     * 发起请求
+     * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致
      *
      * @return bool|string
      * @throws Exception
@@ -107,7 +109,6 @@ class DingtalkRobot
         if (is_null($this->message)) {
             throw new InvalidConfigurationException('Please set message object');
         }
-
 
         $client = new Client([
             'timeout' => $this->config['timeout'] ?? 2.0,

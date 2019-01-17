@@ -2,6 +2,8 @@
 
 namespace Calchen\LaravelDingtalkRobot\Message;
 
+use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
+
 /**
  * ActionCard类型，包含整体跳转和独立跳转
  *
@@ -13,15 +15,33 @@ class ActionCardMessage extends Message
     /**
      * DingtalkActionCardMessage constructor.
      *
-     * @param string $title
-     * @param string $text
-     * @param int    $hideAvatar
-     * @param int    $btnOrientation
+     * @param string $title          首屏会话透出的展示内容
+     * @param string $text           markdown 格式的消息
+     * @param int    $hideAvatar     0-按钮竖直排列，1-按钮横向排列
+     * @param int    $btnOrientation 0-正常发消息者头像,1-隐藏发消息者头像
+     *
+     * @throws InvalidConfigurationException
      */
     public function __construct(string $title, string $text, int $hideAvatar = 0, int $btnOrientation = 0)
     {
         $this->setMessage($title, $text, $hideAvatar, $btnOrientation);
     }
+
+    /**
+     * hideAvatar 的值
+     */
+    const HIDE_AVATAR_VALUES = [
+        0,  // 按钮竖直排列
+        1   // 按钮横向排列
+    ];
+
+    /**
+     * btnOrientation 的值
+     */
+    const BTN_ORIENTATION_VALUES = [
+        0,  // 正常发消息者头像
+        1   // 隐藏发消息者头像
+    ];
 
     /**
      *  ActionCard 的整体跳转和独立跳转两种类型中 title text hideAvatar btnOrientation 都是共同拥有的
@@ -30,9 +50,18 @@ class ActionCardMessage extends Message
      * @param string $text           markdown 格式的消息
      * @param int    $hideAvatar     0-按钮竖直排列，1-按钮横向排列
      * @param int    $btnOrientation 0-正常发消息者头像,1-隐藏发消息者头像
+     *
+     * @throws InvalidConfigurationException
      */
     public function setMessage(string $title, string $text, int $hideAvatar = 0, int $btnOrientation = 0): void
     {
+        if (array_search($hideAvatar, self::HIDE_AVATAR_VALUES) === false) {
+            throw new InvalidConfigurationException("hideAvatar value can only be 0 or 1");
+        }
+        if (array_search($btnOrientation, self::BTN_ORIENTATION_VALUES) === false) {
+            throw new InvalidConfigurationException("btnOrientation value can only be 0 or 1");
+        }
+
         $this->message = [
             'msgtype' => 'actionCard',
             'actionCard' => [

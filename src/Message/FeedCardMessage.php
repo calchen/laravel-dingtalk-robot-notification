@@ -4,12 +4,18 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 
 class FeedCardMessage extends Message
 {
+    /**
+     * FeedCardMessage constructor.
+     */
     public function __construct()
     {
         $this->setMessage();
 
     }
 
+    /**
+     *
+     */
     public function setMessage(): void
     {
         $this->message = [
@@ -21,9 +27,11 @@ class FeedCardMessage extends Message
     }
 
     /**
-     * @param string $title
-     * @param string $messageUrl
-     * @param string $picUrl
+     * 增加链接
+     *
+     * @param string $title      单条信息文本
+     * @param string $messageUrl 点击单条信息到跳转链接
+     * @param string $picUrl     单条信息后面图片的URL
      *
      * @return FeedCardMessage
      */
