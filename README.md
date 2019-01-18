@@ -2,16 +2,13 @@
 
 <p align="center"> 钉钉群机器人 Laravel/Lumen 扩展包 </p>
 <p align="center">
-    <a href="https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification" target="_blank
-">
+    <a href="https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification" target="_blank">
         <img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/calchen/laravel-dingtalk-robot-notification.svg">
     </a>
-    <a href="https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification" target="_blank
-">
+    <a href="https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification" target="_blank">
         <img alt="Total Downloads" src="https://img.shields.io/packagist/dt/calchen/laravel-dingtalk-robot-notification.svg">
     </a>
-    <a href="https://github.com/calchen/laravel-dingtalk-robot-notification/blob/master/LICENSE" target="_blank
-">
+    <a href="https://github.com/calchen/laravel-dingtalk-robot-notification/blob/master/LICENSE" target="_blank">
         <img alt="License" src="https://img.shields.io/github/license/calchen/laravel-dingtalk-robot-notification.svg">
     </a>
 </p>
