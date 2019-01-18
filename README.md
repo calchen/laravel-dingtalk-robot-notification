@@ -246,6 +246,32 @@ public function toDingTalkRobot($notifiable)
 }
 ```
 
+## 使用消息通知（Notification）给多个机器人发同一条消息
+
+```php
+use Calchen\LaravelDingtalkRobot\Robot;
+
+$notification = new TestDingtalkNotification();
+
+(new Robot('robot_1'))->notify($notification);
+(new Robot('robot_2'))->notify($notification);
+
+// TestDingtalkNotification 文件
+use Calchen\LaravelDingtalkRobot\Message\TextMessage;
+
+public function toDingTalkRobot($notifiable)
+{
+    $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
+    
+    // 可@某人或某些人
+    $message->at('1825718XXXX');  // $message->at(['1825718XXXX', '1825718XXXY']);
+    
+    // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
+    $message->setConnection($notifiable->getName());
+    
+    return  $message;
+}
+```
 
 ## 不使用消息通知（Notification）
 

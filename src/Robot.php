@@ -14,4 +14,28 @@ use Illuminate\Notifications\Notifiable;
 class Robot
 {
     use Notifiable;
+
+    // 机器人名称，用于指定发送机器人
+    private $name;
+
+    public function __construct($name = 'default')
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
 }
