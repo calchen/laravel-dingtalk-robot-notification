@@ -38,7 +38,7 @@ class DingtalkRobot
      */
     public function __construct()
     {
-        $this->connection();
+        $this->robot();
     }
 
     /**
@@ -49,12 +49,12 @@ class DingtalkRobot
      * @return $this
      * @throws \Exception
      */
-    public function connection($name = 'default'): self
+    public function robot($name = 'default'): self
     {
         $configs = config('dingtalk_robot');
 
         if (!isset($configs[$name])) {
-            throw new InvalidConfigurationException("Connection name: {$name} not exist. Please check your setting in dingtalk_robot.php");
+            throw new InvalidConfigurationException("Robot name: {$name} not exist. Please check your setting in dingtalk_robot.php");
         }
 
         $this->config = $configs[$name];
@@ -74,7 +74,7 @@ class DingtalkRobot
     public function setMessage(Message $message): self
     {
         $this->message = $message;
-        $this->connection($message->getConnection());
+        $this->robot($message->getRobot());
         return $this;
     }
 

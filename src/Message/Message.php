@@ -17,7 +17,7 @@ abstract class Message
     protected $at = [];
 
     // 设置机器人名称，默认为 default
-    protected $connection = 'default';
+    protected $robot = 'default';
 
 
     /**
@@ -33,13 +33,13 @@ abstract class Message
     /**
      * 设置接受消息的机器人名称
      *
-     * @param $connection
+     * @param $robot
      *
      * @return Message
      */
-    public function setConnection($connection): self
+    public function setRobot($robot): self
     {
-        $this->connection = $connection;
+        $this->robot = $robot;
         return $this;
     }
 
@@ -48,8 +48,8 @@ abstract class Message
      *
      * @return string
      */
-    public function getConnection(): string
+    public function getRobot(): string
     {
-        return $this->connection;
+        return $this->robot;
     }
 }
