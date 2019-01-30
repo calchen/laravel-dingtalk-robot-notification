@@ -162,6 +162,8 @@ public function toDingTalkRobot($notifiable)
     
     // $message->at(['1825718XXXX', '1825718XXXY']);
     
+    // 可@全部人
+    
     // $message->atAll();
     
     // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
@@ -197,6 +199,8 @@ public function toDingTalkRobot($notifiable)
     $message->at('1825718XXXX');
     
     // $message->at(['1825718XXXX', '1825718XXXY']);
+    
+    // 可@全部人
     
     // $message->atAll();
     
@@ -271,13 +275,6 @@ public function toDingTalkRobot($notifiable)
 {
     $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
     
-    // 可@某人或某些人
-    $message->at('1825718XXXX');
-    
-    // $message->at(['1825718XXXX', '1825718XXXY']);
-    
-    // $message->atAll();
-    
     // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
     $message->setConnection($notifiable->getName());
     
@@ -295,13 +292,6 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
 
-// 可@某人或某些人
-$message->at('1825718XXXX');
-
-// $message->at(['1825718XXXX', '1825718XXXY']);
-
-// $message->atAll();
-
 dingtalk_robot()->setMessage($message)->send();
 ```
 
@@ -312,13 +302,6 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
 
-// 可@某人或某些人
-$message->at('1825718XXXX');
-
-// $message->at(['1825718XXXX', '1825718XXXY']);
-
-// $message->atAll();
-
 app(DingtalkRobot::class)->setMessage($message)->send();
 ```
 
@@ -328,13 +311,6 @@ use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
 $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
-
-// 可@某人或某些人
-$message->at('1825718XXXX');
-
-// $message->at(['1825718XXXX', '1825718XXXY']);
-
-// $message->atAll(); 
 
 (new DingtalkRobot)->setMessage($message)->send();
 ```
