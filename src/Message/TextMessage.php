@@ -39,24 +39,37 @@ class TextMessage extends Message
      * 通过手机号码指定“被@人列表”
      *
      * @param string|array $mobiles 被@人的手机号(在text内容里要有@手机号)
-     * @param bool         $atAll   @所有人时:true,否则为:false
      *
-     * @return Message
+     * @return TextMessage
      * @throws InvalidArgumentException
      */
-    public function at($mobiles, bool $atAll = false): self
+    public function at($mobiles): self
     {
         if (!is_array($mobiles) && !is_string($mobiles)) {
             throw new InvalidArgumentException('mobiles should be string or array');
         }
-        if (!is_array($mobiles)) {
-            $mobiles = [$mobiles];
-        }
+
+        $mobiles = is_array($mobiles) ? $mobiles : func_get_args();
 
         $this->at = [
             'at' => [
-                'atMobiles' => $mobiles,
-                'isAtAll' => $atAll
+                'atMobiles' => $mobiles
+            ]
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @所有人
+     *
+     * @return TextMessage
+     */
+    public function atAll(): self
+    {
+        $this->at = [
+            'at' => [
+                'isAtAll' => true
             ]
         ];
 
