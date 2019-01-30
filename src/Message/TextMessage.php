@@ -47,7 +47,7 @@ class TextMessage extends Message
     public function at($mobiles, bool $atAll = false): self
     {
         if (!is_array($mobiles) && !is_string($mobiles)) {
-            throw new InvalidArgumentException('$mobiles should be string or array');
+            throw new InvalidArgumentException('mobiles should be string or array');
         }
         if (!is_array($mobiles)) {
             $mobiles = [$mobiles];
