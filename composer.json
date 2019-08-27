@@ -1,6 +1,6 @@
 {
-    "name": "calchen\/laravel-dingtalk-robot-notification",
-    "description": "Dingtalk robot message notifications for Laravel\/Lumen",
+    "name": "calchen/laravel-dingtalk-robot-notification",
+    "description": "钉钉群机器人 Laravel/Lumen 消息通知扩展包（Dingtalk robot message notifications for Laravel/Lumen）",
     "keywords": ["laravel", "lumen", "dingtalk", "laravel notification"],
     "license": "MIT",
     "authors": [
