@@ -1,12 +1,12 @@
 {
-    "name": "calchen/laravel-dingtalk-robot-notification",
+    "name": "alipeng/laravel-dingtalk-robot-notification",
     "description": "钉钉群机器人 Laravel/Lumen 消息通知扩展包（Dingtalk robot message notifications for Laravel/Lumen）",
     "keywords": ["laravel", "lumen", "dingtalk", "laravel notification"],
     "license": "MIT",
     "authors": [
         {
-            "name": "陈恺垣",
-            "email": "contact@chenky.com"
+            "name": "alipeng",
+            "email": "alipeng@aliyun.com"
         }
     ],
     "require": {
