@@ -19,9 +19,9 @@
 ## 依赖情况
 ```json
 "php": ">=7.1",
-"guzzlehttp/guzzle": "~6.0",
-"phpunit/phpunit": "^7.0",
-"illuminate/notifications": "^5.7",
+"guzzlehttp/guzzle": "^6.0",
+"phpunit/phpunit": "^7.0 || ^8.0",
+"illuminate/notifications": "^5.7 || ^6.0",
 "ramsey/uuid": "^3.8"
 ```
 如遇到依赖过高无法安装的问题请提 Issues。
