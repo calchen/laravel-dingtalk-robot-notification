@@ -27,6 +27,11 @@
             "src/helpers.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Calchen\\LaravelOcr\\Test\\": "tests"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
