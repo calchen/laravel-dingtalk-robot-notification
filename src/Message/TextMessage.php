@@ -5,28 +5,32 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
 
 /**
- * 文本类型消息
+ * text类型
  *
- * Class DingtalkTextMessage
+ * Class TextMessage
  *
  * @package Calchen\LaravelDingtalkRobot
  */
 class TextMessage extends Message
 {
     /**
-     * DingtalkTextMessage constructor.
+     * TextMessage constructor.
      *
-     * @param string $content 消息内容
+     * @param string|null $content 消息内容
      */
-    public function __construct(string $content)
+    public function __construct(string $content = null)
     {
-        $this->setMessage($content);
+        if (!is_null($content)) {
+            $this->setMessage($content);
+        }
     }
 
     /**
      * @param string $content 消息内容
+     *
+     * @return TextMessage
      */
-    public function setMessage(string $content): void
+    public function setMessage(string $content): self
     {
         $this->message = [
             'msgtype' => 'text',
@@ -34,6 +38,8 @@ class TextMessage extends Message
                 'content' => $content
             ]
         ];
+
+        return $this;
     }
 
     /**
@@ -52,11 +58,7 @@ class TextMessage extends Message
 
         $mobiles = is_array($mobiles) ? $mobiles : func_get_args();
 
-        $this->at = [
-            'at' => [
-                'atMobiles' => $mobiles
-            ]
-        ];
+        $this->at['atMobiles'] = $mobiles;
 
         return $this;
     }
@@ -68,11 +70,7 @@ class TextMessage extends Message
      */
     public function atAll(): self
     {
-        $this->at = [
-            'at' => [
-                'isAtAll' => true
-            ]
-        ];
+        $this->at['isAtAll'] = true;
 
         return $this;
     }

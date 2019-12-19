@@ -5,30 +5,34 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
 
 /**
- * markdown类型
+ * markdown 类型
  *
- * Class DingtalkMarkdownMessage
+ * Class MarkdownMessage
  *
  * @package Calchen\LaravelDingtalkRobot
  */
 class MarkdownMessage extends Message
 {
     /**
-     * DingtalkMarkdownMessage constructor.
+     * MarkdownMessage constructor.
      *
-     * @param string $title
-     * @param string $text
+     * @param string|null $title 首屏会话透出的展示内容
+     * @param string|null $text  markdown 格式的消息
      */
-    public function __construct(string $title, string $text)
+    public function __construct(string $title = null, string $text = null)
     {
-        $this->setMessage($title, $text);
+        if (!is_null($title) && !is_null($text)) {
+            $this->setMessage($title, $text);
+        }
     }
 
     /**
      * @param string $title 首屏会话透出的展示内容
-     * @param string $text  markdown格式的消息
+     * @param string $text  markdown 格式的消息
+     *
+     * @return MarkdownMessage
      */
-    public function setMessage(string $title, string $text): void
+    public function setMessage(string $title, string $text): self
     {
         $this->message = [
             'msgtype' => 'markdown',
@@ -37,6 +41,8 @@ class MarkdownMessage extends Message
                 'text' => $text
             ]
         ];
+
+        return $this;
     }
 
     /**
@@ -55,11 +61,7 @@ class MarkdownMessage extends Message
 
         $mobiles = is_array($mobiles) ? $mobiles : func_get_args();
 
-        $this->at = [
-            'at' => [
-                'atMobiles' => $mobiles
-            ]
-        ];
+        $this->at['atMobiles'] = $mobiles;
 
         return $this;
     }
@@ -71,11 +73,7 @@ class MarkdownMessage extends Message
      */
     public function atAll(): self
     {
-        $this->at = [
-            'at' => [
-                'isAtAll' => true
-            ]
-        ];
+        $this->at['isAtAll'] = true;
 
         return $this;
     }

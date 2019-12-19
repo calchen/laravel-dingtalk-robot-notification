@@ -17,9 +17,8 @@ abstract class Message
     // 被@人列表
     protected $at = [];
 
-    // 设置机器人名称，默认为 default
+    // 设置机器人名称，默认为 default，会根据名称去找配置
     protected $robot = 'default';
-
 
     /**
      * 获取消息请求的请求体内容
@@ -28,7 +27,7 @@ abstract class Message
      */
     public function getMessage(): array
     {
-        return $this->message + $this->at;
+        return $this->message + ['at' => $this->at];
     }
 
     /**
