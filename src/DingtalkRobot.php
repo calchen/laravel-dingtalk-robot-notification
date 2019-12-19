@@ -65,7 +65,7 @@ class DingtalkRobot
     }
 
     /**
-     * 设置 message 对象
+     * 将创建好的 message 对象保存到当前对象中以便后续发送
      *
      * @param Message $message
      *

@@ -3,6 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot;
 
 use Calchen\LaravelDingtalkRobot\Message\Message;
+use Exception;
 use Illuminate\Notifications\Notification;
 
 /**
@@ -20,7 +21,7 @@ class DingtalkRobotChannel
      * @param              $notifiable
      * @param Notification $notification
      *
-     * @throws Exception\Exception
+     * @throws Exception
      */
     public function send($notifiable, Notification $notification)
     {
