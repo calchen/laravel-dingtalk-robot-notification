@@ -5,13 +5,14 @@ namespace Calchen\LaravelDingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Exception\Exception;
 use Calchen\LaravelDingtalkRobot\Exception\HttpException;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
-use GuzzleHttp\Client;
 use Calchen\LaravelDingtalkRobot\Message\Message;
+use GuzzleHttp\Client;
 
 /**
  * 钉钉群消息机器 API
  *
  * Class DingtalkRobot
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class DingtalkRobot
@@ -75,6 +76,7 @@ class DingtalkRobot
     {
         $this->message = $message;
         $this->robot($message->getRobot());
+
         return $this;
     }
 
@@ -124,6 +126,7 @@ class DingtalkRobot
                     ]
                 ]
             );
+
             return $response->getBody()->getContents();
         } catch (Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);

@@ -42,6 +42,7 @@ class FeedCardMessage extends Message
             'messageURL' => $messageUrl,
             'picURL' => $picUrl
         ];
+
         return $this;
     }
 }

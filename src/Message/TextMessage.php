@@ -8,6 +8,7 @@ use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
  * 文本类型消息
  *
  * Class DingtalkTextMessage
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class TextMessage extends Message

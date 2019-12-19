@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
  * 对于其他使用了 Notifiable Trait 的类都可以用来发送消息
  *
  * Class Robot
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class Robot

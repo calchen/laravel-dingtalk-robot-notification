@@ -6,6 +6,7 @@ namespace Calchen\LaravelDingtalkRobot\Message;
  * 机器人群消息的基类
  *
  * Class Message
+ *
  * @package Calchen\LaravelDingtalkRobot\Message
  */
 abstract class Message
@@ -40,6 +41,7 @@ abstract class Message
     public function setRobot($robot): self
     {
         $this->robot = $robot;
+
         return $this;
     }
 

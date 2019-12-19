@@ -28,14 +28,13 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
      */
     protected function setupConfig(): void
     {
-        $source = realpath($raw = __DIR__ . '/../config/dingtalk_robot.php') ?: $raw;
+        $source = realpath($raw = __DIR__.'/../config/dingtalk_robot.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([
                 $source => config_path('dingtalk_robot.php')
             ]);
-        }
-        elseif ($this->app instanceof LumenApplication) {
+        } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('dingtalk_robot');
         }
 

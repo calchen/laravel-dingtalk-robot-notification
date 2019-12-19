@@ -8,6 +8,7 @@ use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
  * markdown类型
  *
  * Class DingtalkMarkdownMessage
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class MarkdownMessage extends Message

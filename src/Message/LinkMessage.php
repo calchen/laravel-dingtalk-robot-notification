@@ -6,6 +6,7 @@ namespace Calchen\LaravelDingtalkRobot\Message;
  * link类型
  *
  * Class DingtalkLinkMessage
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class LinkMessage extends Message

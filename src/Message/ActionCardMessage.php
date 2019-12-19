@@ -8,6 +8,7 @@ use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
  * ActionCard类型，包含整体跳转和独立跳转
  *
  * Class DingtalkActionCardMessage
+ *
  * @package Calchen\LaravelDingtalkRobot
  */
 class ActionCardMessage extends Message
@@ -55,10 +56,10 @@ class ActionCardMessage extends Message
      */
     public function setMessage(string $title, string $text, int $hideAvatar = 0, int $btnOrientation = 0): void
     {
-        if (array_search($hideAvatar, self::HIDE_AVATAR_VALUES) === false) {
+        if (!in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
             throw new InvalidConfigurationException("hideAvatar value can only be 0 or 1");
         }
-        if (array_search($btnOrientation, self::BTN_ORIENTATION_VALUES) === false) {
+        if (!in_array($btnOrientation, self::BTN_ORIENTATION_VALUES)) {
             throw new InvalidConfigurationException("btnOrientation value can only be 0 or 1");
         }
 
@@ -85,6 +86,7 @@ class ActionCardMessage extends Message
     {
         $this->message['actionCard']['singleTitle'] = $singleTitle;
         $this->message['actionCard']['singleURL'] = $singleUrl;
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class ActionCardMessage extends Message
             'title' => $title,
             'actionURL' => $actionUrl
         ];
+
         return $this;
     }
 }
