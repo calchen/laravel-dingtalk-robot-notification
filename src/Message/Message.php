@@ -3,11 +3,9 @@
 namespace Calchen\LaravelDingtalkRobot\Message;
 
 /**
- * 机器人群消息的基类
+ * 机器人群消息的基类.
  *
  * Class Message
- *
- * @package Calchen\LaravelDingtalkRobot\Message
  */
 abstract class Message
 {
@@ -21,7 +19,7 @@ abstract class Message
     protected $robot = 'default';
 
     /**
-     * 获取消息请求的请求体内容
+     * 获取消息请求的请求体内容.
      *
      * @return array
      */
@@ -31,7 +29,7 @@ abstract class Message
     }
 
     /**
-     * 设置接受消息的机器人名称
+     * 设置接受消息的机器人名称.
      *
      * @param $robot
      *
@@ -45,7 +43,7 @@ abstract class Message
     }
 
     /**
-     * 获取机器人名称
+     * 获取机器人名称.
      *
      * @return string
      */

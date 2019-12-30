@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 
 /**
- * DingNotice SDK 的 ServiceProvider 只支持 Laravel
+ * DingNotice SDK 的 ServiceProvider 只支持 Laravel.
  */
 class DingtalkRobotNoticeServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
     }
 
     /**
-     * 处理配置项
+     * 处理配置项.
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([
-                $source => config_path('dingtalk_robot.php')
+                $source => config_path('dingtalk_robot.php'),
             ]);
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('dingtalk_robot');

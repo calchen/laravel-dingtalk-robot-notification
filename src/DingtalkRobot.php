@@ -9,11 +9,9 @@ use Calchen\LaravelDingtalkRobot\Message\Message;
 use GuzzleHttp\Client;
 
 /**
- * 钉钉群消息机器 API
+ * 钉钉群消息机器 API.
  *
  * Class DingtalkRobot
- *
- * @package Calchen\LaravelDingtalkRobot
  */
 class DingtalkRobot
 {
@@ -21,11 +19,11 @@ class DingtalkRobot
     /**
      * @var string
      */
-    protected $accessToken = "";
+    protected $accessToken = '';
     /**
      * @var string
      */
-    protected $robotUrl = "https://oapi.dingtalk.com/robot/send";
+    protected $robotUrl = 'https://oapi.dingtalk.com/robot/send';
 
     /**
      * 消息对象
@@ -43,7 +41,7 @@ class DingtalkRobot
     }
 
     /**
-     * 指定机器人名称，默认为 default
+     * 指定机器人名称，默认为 default.
      *
      * @param string $name
      *
@@ -54,7 +52,7 @@ class DingtalkRobot
     {
         $configs = config('dingtalk_robot');
 
-        if (!isset($configs[$name])) {
+        if (! isset($configs[$name])) {
             throw new InvalidConfigurationException("Robot name: {$name} not exist. Please check your setting in dingtalk_robot.php");
         }
 
@@ -81,7 +79,7 @@ class DingtalkRobot
     }
 
     /**
-     * 获取 message 对象的内容
+     * 获取 message 对象的内容.
      *
      * @return array
      */
@@ -91,7 +89,7 @@ class DingtalkRobot
     }
 
     /**
-     * 获取附带 access_token 的 webhook Url
+     * 获取附带 access_token 的 webhook Url.
      *
      * @return string
      */
@@ -101,7 +99,7 @@ class DingtalkRobot
     }
 
     /**
-     * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致
+     * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致.
      *
      * @return bool|string
      * @throws Exception
@@ -123,7 +121,7 @@ class DingtalkRobot
                     'json' => $this->message->getMessage(),
                     'headers' => [
                         'Content-Type' => 'application/json',
-                    ]
+                    ],
                 ]
             );
 
