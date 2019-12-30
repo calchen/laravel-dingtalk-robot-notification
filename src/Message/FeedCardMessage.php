@@ -10,24 +10,20 @@ class FeedCardMessage extends Message
     public function __construct()
     {
         $this->setMessage();
-
     }
 
-    /**
-     *
-     */
     public function setMessage(): void
     {
         $this->message = [
             'feedCard' => [
-                'links' => []
+                'links' => [],
             ],
-            'msgtype' => 'feedCard'
+            'msgtype' => 'feedCard',
         ];
     }
 
     /**
-     * 增加链接
+     * 增加链接.
      *
      * @param string $title      单条信息文本
      * @param string $messageUrl 点击单条信息到跳转链接
@@ -38,10 +34,11 @@ class FeedCardMessage extends Message
     public function addLink(string $title, string $messageUrl, string $picUrl): self
     {
         $this->message['feedCard']['links'][] = [
-            'title' => $title,
+            'title'      => $title,
             'messageURL' => $messageUrl,
-            'picURL' => $picUrl
+            'picURL'     => $picUrl,
         ];
+
         return $this;
     }
 }

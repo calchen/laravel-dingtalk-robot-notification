@@ -5,14 +5,13 @@ namespace Calchen\LaravelDingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Exception\Exception;
 use Calchen\LaravelDingtalkRobot\Exception\HttpException;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
-use GuzzleHttp\Client;
 use Calchen\LaravelDingtalkRobot\Message\Message;
+use GuzzleHttp\Client;
 
 /**
- * 钉钉群消息机器 API
+ * 钉钉群消息机器 API.
  *
  * Class DingtalkRobot
- * @package Calchen\LaravelDingtalkRobot
  */
 class DingtalkRobot
 {
@@ -20,11 +19,11 @@ class DingtalkRobot
     /**
      * @var string
      */
-    protected $accessToken = "";
+    protected $accessToken = '';
     /**
      * @var string
      */
-    protected $robotUrl = "https://oapi.dingtalk.com/robot/send";
+    protected $robotUrl = 'https://oapi.dingtalk.com/robot/send';
 
     /**
      * 消息对象
@@ -42,12 +41,13 @@ class DingtalkRobot
     }
 
     /**
-     * 指定机器人名称，默认为 default
+     * 指定机器人名称，默认为 default.
      *
      * @param string $name
      *
-     * @return $this
      * @throws \Exception
+     *
+     * @return $this
      */
     public function robot($name = 'default'): self
     {
@@ -68,18 +68,20 @@ class DingtalkRobot
      *
      * @param Message $message
      *
-     * @return $this
      * @throws \Exception
+     *
+     * @return $this
      */
     public function setMessage(Message $message): self
     {
         $this->message = $message;
         $this->robot($message->getRobot());
+
         return $this;
     }
 
     /**
-     * 获取 message 对象的内容
+     * 获取 message 对象的内容.
      *
      * @return array
      */
@@ -89,7 +91,7 @@ class DingtalkRobot
     }
 
     /**
-     * 获取附带 access_token 的 webhook Url
+     * 获取附带 access_token 的 webhook Url.
      *
      * @return string
      */
@@ -99,10 +101,11 @@ class DingtalkRobot
     }
 
     /**
-     * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致
+     * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致.
+     *
+     * @throws Exception
      *
      * @return bool|string
-     * @throws Exception
      */
     public function send(): string
     {
@@ -118,12 +121,13 @@ class DingtalkRobot
             $response = $client->post(
                 $this->getRobotUrl(),
                 [
-                    'json' => $this->message->getMessage(),
+                    'json'    => $this->message->getMessage(),
                     'headers' => [
                         'Content-Type' => 'application/json',
-                    ]
+                    ],
                 ]
             );
+
             return $response->getBody()->getContents();
         } catch (Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);

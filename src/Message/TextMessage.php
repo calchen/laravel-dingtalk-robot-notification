@@ -5,10 +5,9 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
 
 /**
- * 文本类型消息
+ * 文本类型消息.
  *
  * Class DingtalkTextMessage
- * @package Calchen\LaravelDingtalkRobot
  */
 class TextMessage extends Message
 {
@@ -29,19 +28,20 @@ class TextMessage extends Message
     {
         $this->message = [
             'msgtype' => 'text',
-            'text' => [
-                'content' => $content
-            ]
+            'text'    => [
+                'content' => $content,
+            ],
         ];
     }
 
     /**
-     * 通过手机号码指定“被@人列表”
+     * 通过手机号码指定“被@人列表”.
      *
      * @param string|array $mobiles 被@人的手机号(在text内容里要有@手机号)
      *
-     * @return TextMessage
      * @throws InvalidArgumentException
+     *
+     * @return TextMessage
      */
     public function at($mobiles): self
     {
@@ -53,8 +53,8 @@ class TextMessage extends Message
 
         $this->at = [
             'at' => [
-                'atMobiles' => $mobiles
-            ]
+                'atMobiles' => $mobiles,
+            ],
         ];
 
         return $this;
@@ -69,8 +69,8 @@ class TextMessage extends Message
     {
         $this->at = [
             'at' => [
-                'isAtAll' => true
-            ]
+                'isAtAll' => true,
+            ],
         ];
 
         return $this;

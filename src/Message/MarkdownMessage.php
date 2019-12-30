@@ -5,10 +5,9 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 use Calchen\LaravelDingtalkRobot\Exception\InvalidArgumentException;
 
 /**
- * markdown类型
+ * markdown类型.
  *
  * Class DingtalkMarkdownMessage
- * @package Calchen\LaravelDingtalkRobot
  */
 class MarkdownMessage extends Message
 {
@@ -30,21 +29,22 @@ class MarkdownMessage extends Message
     public function setMessage(string $title, string $text): void
     {
         $this->message = [
-            'msgtype' => 'markdown',
+            'msgtype'  => 'markdown',
             'markdown' => [
                 'title' => $title,
-                'text' => $text
-            ]
+                'text'  => $text,
+            ],
         ];
     }
 
     /**
-     * 通过手机号码指定“被@人列表”
+     * 通过手机号码指定“被@人列表”.
      *
      * @param string|array $mobiles 被@人的手机号(在text内容里要有@手机号)
      *
-     * @return MarkdownMessage
      * @throws InvalidArgumentException
+     *
+     * @return MarkdownMessage
      */
     public function at($mobiles): self
     {
@@ -56,8 +56,8 @@ class MarkdownMessage extends Message
 
         $this->at = [
             'at' => [
-                'atMobiles' => $mobiles
-            ]
+                'atMobiles' => $mobiles,
+            ],
         ];
 
         return $this;
@@ -72,8 +72,8 @@ class MarkdownMessage extends Message
     {
         $this->at = [
             'at' => [
-                'isAtAll' => true
-            ]
+                'isAtAll' => true,
+            ],
         ];
 
         return $this;
