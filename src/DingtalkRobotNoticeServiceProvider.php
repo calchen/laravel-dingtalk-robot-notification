@@ -26,7 +26,7 @@ class DingtalkRobotNoticeServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function setupConfig(): void
+    protected function setupConfig()
     {
         $source = realpath($raw = __DIR__.'/../config/dingtalk_robot.php') ?: $raw;
 

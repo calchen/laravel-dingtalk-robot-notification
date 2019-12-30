@@ -17,7 +17,7 @@ class FeedCardMessage extends Message
         $this->setMessage();
     }
 
-    public function setMessage(): void
+    public function setMessage()
     {
         $this->message = [
             'msgtype' => 'feedCard',
