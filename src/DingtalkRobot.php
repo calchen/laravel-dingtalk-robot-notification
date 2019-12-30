@@ -17,7 +17,7 @@ use GuzzleHttp\Client;
 class DingtalkRobot
 {
     /**
-     * 允许的安全设置
+     * 允许的安全设置.
      */
     const SECURITY_TYPES = [
         null,         // 旧机器人
@@ -60,7 +60,7 @@ class DingtalkRobot
         $configs = config('dingtalk_robot');
 
         // name 必须存在
-        if (!isset($configs[$name])) {
+        if (! isset($configs[$name])) {
             $message = __(ErrorCodes::MESSAGES[ErrorCodes::INVALID_ROBOT_NAME], [
                 'name' => $name,
             ]);
@@ -70,33 +70,33 @@ class DingtalkRobot
         $this->config = $configs[$name];
 
         // access_token 必须有
-        if (!isset($this->config['access_token'])) {
+        if (! isset($this->config['access_token'])) {
             throw new InvalidConfigurationException(null, ErrorCodes::ACCESS_TOKEN_IS_NECESSARY);
         }
 
         $securityType = $this->config['security_type'];
 
-        if (!in_array($securityType, self::SECURITY_TYPES)) {
+        if (! in_array($securityType, self::SECURITY_TYPES)) {
             throw new InvalidConfigurationException(null, ErrorCodes::INVALID_SECURITY_TYPE);
         }
 
         // 根据安全设置进行检查
         if (in_array($securityType, [self::SECURITY_TYPES[1], self::SECURITY_TYPES[2]]) &&
-            !isset($this->config['security_values'])
+            ! isset($this->config['security_values'])
         ) {
             throw new InvalidConfigurationException(null, ErrorCodes::SECURITY_VALUES_IS_NECESSARY);
         }
         $securityValues = $this->config['security_values'];
         if ($securityType == self::SECURITY_TYPES[1]) {
             // 关键字类型的，security_values 必须是数组，至少一个值，最多10个值，且必须是索引从0开始的连续数组
-            if (!is_array($securityValues) || count($securityValues) == 0 || count($securityValues) > 10 ||
+            if (! is_array($securityValues) || count($securityValues) == 0 || count($securityValues) > 10 ||
                 array_keys($securityValues) != range(0, count($securityValues) - 1)
             ) {
                 throw new InvalidConfigurationException(null, ErrorCodes::INVALID_SECURITY_VALUES_KEYWORDS);
             }
         } elseif ($securityType == self::SECURITY_TYPES[2]) {
             // 签名类型的，security_values 必须是签名，签名以 SEC 开头
-            if (!is_string($securityValues) || strpos($securityValues, 'SEC') !== 0) {
+            if (! is_string($securityValues) || strpos($securityValues, 'SEC') !== 0) {
                 throw new InvalidConfigurationException(null, ErrorCodes::INVALID_SECURITY_VALUES_SIGNATURE);
             }
         }
@@ -147,7 +147,7 @@ class DingtalkRobot
         ]);
 
         $query = [
-            'access_token' => $this->config['access_token']
+            'access_token' => $this->config['access_token'],
         ];
 
         // 在请求接口前根据安全设置进行处理

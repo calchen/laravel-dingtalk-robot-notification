@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Exceptions;
-
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 
@@ -22,7 +20,7 @@ class ErrorCodes
     const MESSAGES = [
         self::INVALID_ROBOT_NAME => 'Robot name: :name not exist. Please check your config in file dingtalk_robot.php',
         self::ACCESS_TOKEN_IS_NECESSARY => 'access_token is necessary in config',
-        self::INVALID_SECURITY_TYPE => 'security_type in config is invalid, only value in '. DingtalkRobot::class .'::SECURITY_TYPES is acceptable',
+        self::INVALID_SECURITY_TYPE => 'security_type in config is invalid, only value in '.DingtalkRobot::class.'::SECURITY_TYPES is acceptable',
         self::SECURITY_VALUES_IS_NECESSARY => 'security_values is necessary when security_type is keywords or signature',
         self::INVALID_SECURITY_VALUES_KEYWORDS => 'security_values is invalid',
         self::INVALID_SECURITY_VALUES_SIGNATURE => 'security_values is invalid',

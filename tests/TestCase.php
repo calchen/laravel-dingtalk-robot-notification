@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelOcr\Test;
-
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;

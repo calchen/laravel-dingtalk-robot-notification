@@ -39,7 +39,7 @@ class ActionCardMessage extends Message
      */
     public function __construct(string $title = null, string $text = null, $hideAvatar = null, $btnOrientation = null)
     {
-        if (!is_null($title) && !is_null($text)) {
+        if (! is_null($title) && ! is_null($text)) {
             $this->setMessage($title, $text, $hideAvatar, $btnOrientation);
         }
     }
@@ -65,14 +65,14 @@ class ActionCardMessage extends Message
             ],
         ];
 
-        if (!is_null($hideAvatar)) {
-            if (!in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
+        if (! is_null($hideAvatar)) {
+            if (! in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
                 throw new InvalidConfigurationException('hideAvatar value can only be 0 or 1');
             }
             $this->message['actionCard']['hideAvatar'] = $hideAvatar;
         }
-        if (!is_null($btnOrientation)) {
-            if (!in_array($btnOrientation, self::BTN_ORIENTATION_VALUES)) {
+        if (! is_null($btnOrientation)) {
+            if (! in_array($btnOrientation, self::BTN_ORIENTATION_VALUES)) {
                 throw new InvalidConfigurationException('hideAvatar value can only be 0 or 1');
             }
             $this->message['actionCard']['btnOrientation'] = $btnOrientation;
