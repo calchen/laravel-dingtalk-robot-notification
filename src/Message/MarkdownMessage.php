@@ -3,7 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot\Message;
 
 /**
- * markdown 类型
+ * markdown 类型.
  *
  * Class MarkdownMessage
  */
@@ -19,7 +19,7 @@ class MarkdownMessage extends Message
      */
     public function __construct(string $title = null, string $text = null)
     {
-        if (!is_null($title) && !is_null($text)) {
+        if (! is_null($title) && ! is_null($text)) {
             $this->setMessage($title, $text);
         }
     }

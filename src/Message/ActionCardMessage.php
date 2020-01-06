@@ -2,8 +2,8 @@
 
 namespace Calchen\LaravelDingtalkRobot\Message;
 
-use Calchen\LaravelDingtalkRobot\Exceptions\InvalidConfigurationException;
 use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
+use Calchen\LaravelDingtalkRobot\Exceptions\InvalidConfigurationException;
 
 /**
  * ActionCard类型，包含整体跳转和独立跳转.
@@ -66,8 +66,8 @@ class ActionCardMessage extends Message
             ],
         ];
 
-        if (!is_null($hideAvatar)) {
-            if (!in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
+        if (! is_null($hideAvatar)) {
+            if (! in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
                 throw new InvalidConfigurationException(null, ErrorCodes::HIDE_AVATAR_INVALID);
             }
             $this->message['actionCard']['hideAvatar'] = $hideAvatar;

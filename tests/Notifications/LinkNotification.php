@@ -9,11 +9,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class LinkNotification
+ * Class LinkNotification.
  *
  * link 类型消息
- *
- * @package Calchen\LaravelDingtalkRobot\Test\Notifications
  */
 class LinkNotification extends Notification
 {

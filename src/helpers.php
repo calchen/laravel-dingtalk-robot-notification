@@ -2,7 +2,7 @@
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 
-if (!function_exists('dingtalk_robot')) {
+if (! function_exists('dingtalk_robot')) {
     /**
      * 获取钉钉群机器人接口.
      *

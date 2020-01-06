@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Test\Notifications;
-
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobotChannel;
 use Calchen\LaravelDingtalkRobot\Exceptions\InvalidConfigurationException;
@@ -12,11 +10,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class ActionCardIndependentJumpNotification
+ * Class ActionCardIndependentJumpNotification.
  *
  * 独立跳转 ActionCard 类型消息
- *
- * @package Calchen\LaravelDingtalkRobot\Test\Notifications
  */
 class ActionCardIndependentJumpNotification extends Notification
 {

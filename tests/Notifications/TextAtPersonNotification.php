@@ -10,11 +10,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class MarkdownNotification
+ * Class MarkdownNotification.
  *
  * text 类型消息
- *
- * @package Calchen\LaravelDingtalkRobot\Test\Notifications
  */
 class TextAtPersonNotification extends Notification
 {

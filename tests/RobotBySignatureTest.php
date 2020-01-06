@@ -14,11 +14,9 @@ use Calchen\LaravelDingtalkRobot\Test\Notifications\TextAtPersonNotification;
 use Exception;
 
 /**
- * Class RobotBySignatureTest
+ * Class RobotBySignatureTest.
  *
  * 验证方式为签名的测试
- *
- * @package Calchen\LaravelDingtalkRobot\Test
  */
 class RobotBySignatureTest extends TestCase
 {
@@ -40,7 +38,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试独立跳转 ActionCard 类型消息
+     * 测试独立跳转 ActionCard 类型消息.
      */
     public function testActionCardIndependentJumpNotification()
     {
@@ -56,7 +54,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试整体跳转 ActionCard 类型消息
+     * 测试整体跳转 ActionCard 类型消息.
      */
     public function testActionCardOverallJumpNotification()
     {
@@ -72,7 +70,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 FeedCard 类型消息
+     * 测试 FeedCard 类型消息.
      */
     public function testFeedCardNotification()
     {
@@ -88,7 +86,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 link 类型消息
+     * 测试 link 类型消息.
      */
     public function testLinkNotification()
     {
@@ -104,7 +102,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 markdown 类型消息
+     * 测试 markdown 类型消息.
      */
     public function testMarkdownAtAllNotification()
     {
@@ -120,7 +118,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 markdown 类型消息
+     * 测试 markdown 类型消息.
      */
     public function testMarkdownAtPersonNotification()
     {
@@ -136,7 +134,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 text 类型消息
+     * 测试 text 类型消息.
      */
     public function testTextAtAllNotification()
     {
@@ -152,7 +150,7 @@ class RobotBySignatureTest extends TestCase
     }
 
     /**
-     * 测试 text 类型消息
+     * 测试 text 类型消息.
      */
     public function testTextAtPersonNotification()
     {

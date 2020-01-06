@@ -18,7 +18,7 @@ class TextMessage extends Message
      */
     public function __construct(string $content = null)
     {
-        if (!is_null($content)) {
+        if (! is_null($content)) {
             $this->setMessage($content);
         }
     }

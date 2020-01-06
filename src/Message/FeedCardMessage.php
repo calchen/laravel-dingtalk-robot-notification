@@ -3,7 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot\Message;
 
 /**
- * FeedCard 类型
+ * FeedCard 类型.
  *
  * Class FeedCardMessage
  */

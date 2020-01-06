@@ -10,11 +10,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class ActionCardOverallJumpNotification
+ * Class ActionCardOverallJumpNotification.
  *
  * 整体跳转 ActionCard 类型消息
- *
- * @package Calchen\LaravelDingtalkRobot\Test\Notifications
  */
 class ActionCardOverallJumpNotification extends Notification
 {

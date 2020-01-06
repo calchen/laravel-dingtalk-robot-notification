@@ -9,11 +9,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class FeedCardNotification
+ * Class FeedCardNotification.
  *
  * FeedCard 类型消息
- *
- * @package Calchen\LaravelDingtalkRobot\Test\Notifications
  */
 class FeedCardNotification extends Notification
 {

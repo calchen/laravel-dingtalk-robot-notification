@@ -2,13 +2,12 @@
 
 namespace Calchen\LaravelDingtalkRobot\Message;
 
-use Calchen\LaravelDingtalkRobot\Exceptions\InvalidArgumentException;
 use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
+use Calchen\LaravelDingtalkRobot\Exceptions\InvalidArgumentException;
 
 /**
- * Trait AtTrait
+ * Trait AtTrait.
  *
- * @package Calchen\LaravelDingtalkRobot\Message
  * @mixin Message
  */
 trait AtTrait
@@ -23,7 +22,7 @@ trait AtTrait
      */
     public function at($mobiles): self
     {
-        if (!is_array($mobiles) && !is_string($mobiles)) {
+        if (! is_array($mobiles) && ! is_string($mobiles)) {
             throw new InvalidArgumentException(null, ErrorCodes::MOBILES_INVALID);
         }
 
