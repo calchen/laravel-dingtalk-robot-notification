@@ -23,7 +23,7 @@ class TestCase extends TestbenchTestCase
             //            ],
             'keywords' => [
                 'access_token' => env('DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN'),
-                'timeout' => 2.0,
+                'timeout' => 5.0,
                 'security_type' => 'keywords',
                 'security_values' => [
                     'Apple',
@@ -34,7 +34,7 @@ class TestCase extends TestbenchTestCase
             ],
             'signature' => [
                 'access_token' => env('DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN'),
-                'timeout' => 2.0,
+                'timeout' => 5.0,
                 'security_type' => 'signature',
                 'security_values' => env('DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES'),
             ],

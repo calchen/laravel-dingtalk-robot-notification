@@ -164,4 +164,11 @@ class RobotByKeywordsTest extends TestCase
 
         $this->assertTrue(true);
     }
+
+    public function sleepForLimit()
+    {
+        sleep(35);
+
+        $this->assertTrue(true);
+    }
 }
