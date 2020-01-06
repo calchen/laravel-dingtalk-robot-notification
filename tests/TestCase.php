@@ -1,7 +1,6 @@
 <?php
 
-
-namespace Calchen\LaravelOcr\Test;
+namespace Calchen\LaravelDingtalkRobot\Test;
 
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider;
@@ -28,9 +27,10 @@ class TestCase extends TestbenchTestCase
                 'timeout' => 2.0,
                 'security_type' => 'keywords',
                 'security_values' => [
-                    'asd123e',
-                    '":{}:{}?} ',
-                    '张三李四',
+                    'Apple',
+                    '火车',
+                    '杭州',
+                    '烟火',
                 ],
             ],
             'signature' => [

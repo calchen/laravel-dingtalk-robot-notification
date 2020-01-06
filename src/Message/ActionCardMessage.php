@@ -2,7 +2,8 @@
 
 namespace Calchen\LaravelDingtalkRobot\Message;
 
-use Calchen\LaravelDingtalkRobot\Exception\InvalidConfigurationException;
+use Calchen\LaravelDingtalkRobot\Exceptions\InvalidConfigurationException;
+use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
 
 /**
  * ActionCard类型，包含整体跳转和独立跳转.
@@ -58,22 +59,22 @@ class ActionCardMessage extends Message
     public function setMessage(string $title, string $text, $hideAvatar = null, $btnOrientation = null): self
     {
         $this->message = [
-            'msgtype' => 'actionCard',
+            'msgtype'    => 'actionCard',
             'actionCard' => [
                 'title' => $title,
-                'text' => $text,
+                'text'  => $text,
             ],
         ];
 
         if (!is_null($hideAvatar)) {
             if (!in_array($hideAvatar, self::HIDE_AVATAR_VALUES)) {
-                throw new InvalidConfigurationException('hideAvatar value can only be 0 or 1');
+                throw new InvalidConfigurationException(null, ErrorCodes::HIDE_AVATAR_INVALID);
             }
             $this->message['actionCard']['hideAvatar'] = $hideAvatar;
         }
         if (!is_null($btnOrientation)) {
             if (!in_array($btnOrientation, self::BTN_ORIENTATION_VALUES)) {
-                throw new InvalidConfigurationException('hideAvatar value can only be 0 or 1');
+                throw new InvalidConfigurationException(null, ErrorCodes::BTN_ORIENTATION_INVALID);
             }
             $this->message['actionCard']['btnOrientation'] = $btnOrientation;
         }
@@ -109,7 +110,7 @@ class ActionCardMessage extends Message
     public function addButton(string $title, string $actionUrl): self
     {
         $this->message['actionCard']['btns'][] = [
-            'title' => $title,
+            'title'     => $title,
             'actionURL' => $actionUrl,
         ];
         unset($this->message['actionCard']['singleTitle']);

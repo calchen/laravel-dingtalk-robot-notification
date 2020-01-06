@@ -3,7 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot\Message;
 
 /**
- * link类型.
+ * link类型
  *
  * Class LinkMessage
  */
@@ -23,7 +23,7 @@ class LinkMessage extends Message
         string $messageUrl = null,
         string $picUrl = ''
     ) {
-        if (! is_null($title) && ! is_null($text) && ! is_null($messageUrl)) {
+        if (!is_null($title) && !is_null($text) && !is_null($messageUrl)) {
             $this->setMessage($title, $text, $messageUrl, $picUrl);
         }
     }
@@ -40,10 +40,10 @@ class LinkMessage extends Message
     {
         $this->message = [
             'msgtype' => 'link',
-            'link' => [
-                'title' => $title,
-                'text' => $text,
-                'picUrl' => $picUrl,
+            'link'    => [
+                'title'      => $title,
+                'text'       => $text,
+                'picUrl'     => $picUrl,
                 'messageUrl' => $messageUrl,
             ],
         ];

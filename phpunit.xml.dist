@@ -20,11 +20,12 @@
     </filter>
 
     <php>
-        <env name="TENCENT_CLOUD_SECRET_ID" value=""/>
-        <env name="TENCENT_CLOUD_SECRET_KEY" value=""/>
-        <env name="TENCENT_CLOUD_OCR_ENDPOINT" value="ocr.tencentcloudapi.com"/>
-        <env name="TENCENT_CLOUD_OCR_REGION" value=""/>
-        <env name="TENCENT_CLOUD_APP_ID" value=""/>
+        <env name="AT_PERSON_PHONE" value=""/>
+        <env name="DINGTALK_ROBOT_DEFAULT_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES" value=""/>
+        <env name="DINGTALK_ROBOT_ACCESS_TOKEN" value=""/>
     </php>
 
     <logging>

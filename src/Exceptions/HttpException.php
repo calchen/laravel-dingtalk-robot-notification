@@ -1,6 +1,6 @@
 <?php
 
-namespace Calchen\LaravelDingtalkRobot\Exception;
+namespace Calchen\LaravelDingtalkRobot\Exceptions;
 
 /**
  * Http 请求异常.

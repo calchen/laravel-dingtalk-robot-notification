@@ -31,11 +31,11 @@ abstract class Message
     /**
      * 设置接受消息的机器人名称.
      *
-     * @param $robot
+     * @param string $robot
      *
      * @return Message
      */
-    public function setRobot($robot): self
+    public function setRobot(string $robot): self
     {
         $this->robot = $robot;
 

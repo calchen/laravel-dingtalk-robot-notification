@@ -3,7 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot\Message;
 
 /**
- * FeedCard类型.
+ * FeedCard 类型
  *
  * Class FeedCardMessage
  */
@@ -20,7 +20,7 @@ class FeedCardMessage extends Message
     public function setMessage()
     {
         $this->message = [
-            'msgtype' => 'feedCard',
+            'msgtype'  => 'feedCard',
             'feedCard' => [
                 'links' => [],
             ],
@@ -39,9 +39,9 @@ class FeedCardMessage extends Message
     public function addLink(string $title, string $messageUrl, string $picUrl): self
     {
         $this->message['feedCard']['links'][] = [
-            'title' => $title,
+            'title'      => $title,
             'messageURL' => $messageUrl,
-            'picURL' => $picUrl,
+            'picURL'     => $picUrl,
         ];
 
         return $this;

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // 这里注入到 Laravel 容器中的 HTTP 客户端的名称，如果不填写则默认创建
+    // 提供这个功能是为了方便用户替换自己使用的 HTTP 客户端，
+    'http_client_name' => null,
     // 默认发送的机器人
     'default' => [
         // 机器人的 access_token

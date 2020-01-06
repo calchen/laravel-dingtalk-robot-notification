@@ -1,8 +1,7 @@
 <?php
 
-namespace Calchen\LaravelDingtalkRobot\Exception;
+namespace Calchen\LaravelDingtalkRobot\Exceptions;
 
-use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
 use Throwable;
 
 /**
