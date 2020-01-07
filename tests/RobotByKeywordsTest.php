@@ -258,10 +258,10 @@ class RobotByKeywordsTest extends TestCase
         $this->fail('The exception parameter was not handled correctly');
     }
 
-    public function testSleepForLimit()
-    {
-        sleep(15);
-
-        $this->assertTrue(true);
-    }
+//    public function testSleepForLimit()
+//    {
+//        sleep(15);
+//
+//        $this->assertTrue(true);
+//    }
 }

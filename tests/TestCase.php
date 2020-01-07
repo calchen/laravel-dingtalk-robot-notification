@@ -15,6 +15,7 @@ class TestCase extends TestbenchTestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('dingtalk_robot', [
+            'http_client_name' => null,
             // 因为没有旧的机器人故无法测试
             //            'default' => [
             //                'access_token' => env('DINGTALK_ROBOT_DEFAULT_ACCESS_TOKEN'),
