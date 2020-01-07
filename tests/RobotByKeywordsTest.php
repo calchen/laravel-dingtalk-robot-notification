@@ -260,7 +260,7 @@ class RobotByKeywordsTest extends TestCase
 
     public function testSleepForLimit()
     {
-        sleep(35);
+        sleep(15);
 
         $this->assertTrue(true);
     }

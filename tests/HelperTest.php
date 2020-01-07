@@ -16,6 +16,6 @@ class HelperTest extends TestCase
         $message = new TextMessage('我就是我, 是不一样的烟火');
         $message->setRobot('keywords');
         $robot->setMessage($message);
-        $this->assertIsArray($robot->getMessage());
+        $this->assertTrue(is_array($robot->getMessage()));
     }
 }
