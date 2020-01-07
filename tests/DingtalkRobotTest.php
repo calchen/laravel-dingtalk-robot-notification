@@ -10,7 +10,6 @@ class DingtalkRobotTest extends TestCase
 {
     public function testInvalidHttpClientName()
     {
-
         try {
             app('config')->set('dingtalk_robot.http_client_name', 123);
             $robot = dingtalk_robot();
@@ -61,7 +60,7 @@ class DingtalkRobotTest extends TestCase
         try {
             app('config')->set('dingtalk_robot.testInvalidSecurityType', [
                 'access_token' => 'secret',
-                'security_type' => 'unknown'
+                'security_type' => 'unknown',
             ]);
 
             $robot = dingtalk_robot();
@@ -80,7 +79,7 @@ class DingtalkRobotTest extends TestCase
         try {
             app('config')->set('dingtalk_robot.testUnsetSecurityValue', [
                 'access_token' => 'secret',
-                'security_type' => DingtalkRobot::SECURITY_TYPES[1]
+                'security_type' => DingtalkRobot::SECURITY_TYPES[1],
             ]);
 
             $robot = dingtalk_robot();
@@ -100,7 +99,7 @@ class DingtalkRobotTest extends TestCase
             app('config')->set('dingtalk_robot.testInvalidSecurityValueSignature', [
                 'access_token' => 'secret',
                 'security_type' => DingtalkRobot::SECURITY_TYPES[2],
-                'security_values' => 'signature'
+                'security_values' => 'signature',
             ]);
 
             $robot = dingtalk_robot();
