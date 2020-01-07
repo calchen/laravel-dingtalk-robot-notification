@@ -154,13 +154,13 @@ class DingtalkRobot
      */
     private function getHttpClient(): ClientInterface
     {
-        if (! (self::$httpClient instanceof ClientInterface)) {
+        if (! self::$httpClient instanceof ClientInterface) {
             $configs = config('dingtalk_robot');
             if (isset($configs['http_client_name']) && class_exists($configs['http_client_name'])) {
                 self::$httpClient = App::make($configs['http_client_name']);
             }
 
-            if (! (self::$httpClient instanceof ClientInterface)) {
+            if (! self::$httpClient instanceof ClientInterface) {
                 self::$httpClient = new GuzzleClient([
                     'timeout' => $this->config['timeout'] ?? 2.0,
                 ]);

@@ -6,6 +6,7 @@ use Calchen\LaravelDingtalkRobot\DingtalkRobotChannel;
 use Calchen\LaravelDingtalkRobot\Exceptions\InvalidArgumentException;
 use Calchen\LaravelDingtalkRobot\Message\MarkdownMessage;
 use Calchen\LaravelDingtalkRobot\Message\Message;
+use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
@@ -32,7 +33,7 @@ class MarkdownAtPersonNotification extends Notification
     }
 
     /**
-     * @param $notifiable
+     * @param Robot $notifiable
      *
      * @return Message
      * @throws InvalidArgumentException

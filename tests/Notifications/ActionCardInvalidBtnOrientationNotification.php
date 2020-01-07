@@ -10,11 +10,11 @@ use Calchen\LaravelDingtalkRobot\Robot;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class ActionCardOverallJumpNotification.
+ * Class ActionCardIndependentJumpNotification.
  *
- * 整体跳转 ActionCard 类型消息
+ * 独立跳转 ActionCard 类型消息
  */
-class ActionCardOverallJumpNotification extends Notification
+class ActionCardInvalidBtnOrientationNotification extends Notification
 {
     /**
      * Create a new notification instance.
@@ -43,11 +43,9 @@ class ActionCardOverallJumpNotification extends Notification
         $message = new ActionCardMessage(
             '乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身',
             "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划",
-            1,
-            1
+            null,
+            2
         );
-
-        $message->setSingle('阅读全文', 'https://www.dingtalk.com/');
 
         $message->setRobot($notifiable->getName());
 

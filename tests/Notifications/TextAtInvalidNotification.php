@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notification;
  *
  * text 类型消息
  */
-class TextAtPersonNotification extends Notification
+class TextAtInvalidNotification extends Notification
 {
     /**
      * Create a new notification instance.
@@ -40,7 +40,7 @@ class TextAtPersonNotification extends Notification
      */
     public function toDingTalkRobot($notifiable): Message
     {
-        $phone = env('AT_PERSON_PHONE');
+        $phone = 123456;
         $message = new TextMessage("我就是我, 是不一样的烟火 @{$phone}");
 
         $message->at($phone);
