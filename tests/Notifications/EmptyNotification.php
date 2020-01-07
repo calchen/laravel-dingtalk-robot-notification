@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Test\Notifications;
-
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobotChannel;
 use Calchen\LaravelDingtalkRobot\Message\Message;
@@ -34,6 +32,5 @@ class EmptyNotification extends Notification
      */
     public function toDingTalkRobot($notifiable)
     {
-        return null;
     }
 }

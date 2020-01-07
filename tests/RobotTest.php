@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Test;
-
 
 use Calchen\LaravelDingtalkRobot\Robot;
 

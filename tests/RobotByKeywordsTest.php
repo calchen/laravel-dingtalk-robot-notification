@@ -53,6 +53,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -70,6 +71,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -87,6 +89,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->assertEquals(ErrorCodes::HIDE_AVATAR_INVALID, $e->getCode());
+
             return;
         }
 
@@ -104,6 +107,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->assertEquals(ErrorCodes::BTN_ORIENTATION_INVALID, $e->getCode());
+
             return;
         }
 
@@ -121,6 +125,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -138,6 +143,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -155,6 +161,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -172,6 +179,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -189,6 +197,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -206,6 +215,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->fail($e->getMessage());
+
             return;
         }
 
@@ -223,6 +233,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->assertEquals(ErrorCodes::MOBILES_INVALID, $e->getCode());
+
             return;
         }
 
@@ -240,6 +251,7 @@ class RobotByKeywordsTest extends TestCase
             static::getRobot()->notify($notification);
         } catch (Exception $e) {
             $this->assertEquals(ErrorCodes::SHOULD_BE_INSTANCEOF_MESSAGE, $e->getCode());
+
             return;
         }
 

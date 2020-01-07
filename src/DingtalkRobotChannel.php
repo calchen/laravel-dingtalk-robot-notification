@@ -3,8 +3,8 @@
 namespace Calchen\LaravelDingtalkRobot;
 
 use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
-use Calchen\LaravelDingtalkRobot\Message\Message;
 use Calchen\LaravelDingtalkRobot\Exceptions\Exception;
+use Calchen\LaravelDingtalkRobot\Message\Message;
 use Illuminate\Notifications\Notification;
 
 /**
