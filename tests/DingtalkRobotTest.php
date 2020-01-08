@@ -60,32 +60,15 @@ class DingtalkRobotTest extends TestCase
         try {
             app('config')->set('dingtalk_robot.testInvalidSecurityType', [
                 'access_token' => 'secret',
-                'security_type' => 'unknown',
+                'security_types' => [
+                    'unknown'
+                ],
             ]);
 
             $robot = dingtalk_robot();
             $robot->robot('testInvalidSecurityType');
         } catch (Exception $e) {
-            $this->assertEquals(ErrorCodes::INVALID_SECURITY_TYPE, $e->getCode());
-
-            return;
-        }
-
-        $this->fail('The exception parameter was not handled correctly');
-    }
-
-    public function testUnsetSecurityValue()
-    {
-        try {
-            app('config')->set('dingtalk_robot.testUnsetSecurityValue', [
-                'access_token' => 'secret',
-                'security_type' => DingtalkRobot::SECURITY_TYPES[1],
-            ]);
-
-            $robot = dingtalk_robot();
-            $robot->robot('testUnsetSecurityValue');
-        } catch (Exception $e) {
-            $this->assertEquals(ErrorCodes::SECURITY_VALUES_IS_NECESSARY, $e->getCode());
+            $this->assertEquals(ErrorCodes::INVALID_SECURITY_TYPES, $e->getCode());
 
             return;
         }
@@ -98,8 +81,10 @@ class DingtalkRobotTest extends TestCase
         try {
             app('config')->set('dingtalk_robot.testInvalidSecurityValueSignature', [
                 'access_token' => 'secret',
-                'security_type' => DingtalkRobot::SECURITY_TYPES[2],
-                'security_values' => 'signature',
+                'security_types' => [
+                    DingtalkRobot::SECURITY_TYPES[2]
+                ],
+                'security_signature' => 'signature',
             ]);
 
             $robot = dingtalk_robot();

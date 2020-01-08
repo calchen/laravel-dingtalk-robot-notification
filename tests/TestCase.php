@@ -25,19 +25,17 @@ class TestCase extends TestbenchTestCase
             'keywords' => [
                 'access_token' => env('DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN'),
                 'timeout' => 5.0,
-                'security_type' => 'keywords',
-                'security_values' => [
-                    'Apple',
-                    '火车',
-                    '杭州',
-                    '烟火',
+                'security_types' => [
+                    'keywords'
                 ],
             ],
             'signature' => [
                 'access_token' => env('DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN'),
                 'timeout' => 5.0,
-                'security_type' => 'signature',
-                'security_values' => env('DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES'),
+                'security_types' => [
+                    'signature'
+                ],
+                'security_signature' => env('DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES'),
             ],
             // 无法控制 travis ip，故这个测试跳过
             //            'ip' => [

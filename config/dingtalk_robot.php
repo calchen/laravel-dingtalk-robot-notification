@@ -12,14 +12,14 @@ return [
         // 请求的超时时间
         'timeout' => env('DINGTALK_ROBOT_TIMEOUT', 2.0),
 
-        // 安全设置（见：\Calchen\LaravelDingtalkRobot\DingtalkRobot::SECURITY_TYPES）
-        'security_type' => env('DINGTALK_ROBOT_SECURITY_TYPE'),
+        // 安全设置
+        // 多个配置项以数组形式设置（见：\Calchen\LaravelDingtalkRobot\DingtalkRobot::SECURITY_TYPES）
+        'security_types' => [
+            'keywords',
+            'signature',
+        ],
 
-        // 根据安全设置，这里的值有所不同
-        // security_type 为 null，该值无效
-        // security_type 为 keywords，该值为数组，数组的每个元素为关键字字符串，如：["关键字1", "关键字2"]
-        // security_type 为 signature，该值为密钥字符串，如：SECa7386ac5314accda3a5036a5192ea826d676abab4920fc410bddcb57c4ff2bce
-        // security_type 为 ip，该值无效
-        'security_values' => env('DINGTALK_ROBOT_SECURITY_VALUES'),
+        // types 中包含 signature 时，该字段是必须的，为密钥字符串
+        'security_signature' => env('DINGTALK_ROBOT_SECURITY_SIGNATURE'),
     ],
 ];
