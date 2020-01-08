@@ -26,14 +26,14 @@ class TestCase extends TestbenchTestCase
                 'access_token' => env('DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN'),
                 'timeout' => 5.0,
                 'security_types' => [
-                    'keywords'
+                    'keywords',
                 ],
             ],
             'signature' => [
                 'access_token' => env('DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN'),
                 'timeout' => 5.0,
                 'security_types' => [
-                    'signature'
+                    'signature',
                 ],
                 'security_signature' => env('DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES'),
             ],
