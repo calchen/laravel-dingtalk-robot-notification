@@ -10,7 +10,6 @@ use Calchen\LaravelDingtalkRobot\Message\Message;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\App;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -158,17 +157,18 @@ class DingtalkRobot
      */
     private function getHttpClient(): ClientInterface
     {
-        if (! self::$httpClient instanceof ClientInterface) {
-            $configs = config('dingtalk_robot');
-            if (isset($configs['http_client_name']) && app()->has($configs['http_client_name'])) {
-                self::$httpClient = app($configs['http_client_name']);
+        $configs = config('dingtalk_robot');
+        if (isset($configs['http_client_name']) && app()->has($configs['http_client_name'])) {
+            $client = app($configs['http_client_name']);
+            if ($client instanceof ClientInterface) {
+                return $client;
             }
+        }
 
-            if (! self::$httpClient instanceof ClientInterface) {
-                self::$httpClient = new GuzzleClient([
-                    'timeout' => $this->config['timeout'] ?? 2.0,
-                ]);
-            }
+        if (! self::$httpClient instanceof ClientInterface) {
+            self::$httpClient = new GuzzleClient([
+                'timeout' => $this->config['timeout'] ?? 2.0,
+            ]);
         }
 
         return self::$httpClient;
