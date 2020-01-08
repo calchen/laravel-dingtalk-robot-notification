@@ -113,4 +113,18 @@ class DingtalkRobotTest extends TestCase
 
         $this->fail('The exception parameter was not handled correctly');
     }
+
+    public function testMessageRequired()
+    {
+        try {
+            $robot = dingtalk_robot();
+            $robot->send();
+        } catch (Exception $e) {
+            $this->assertEquals(ErrorCodes::MESSAGE_REQUIRED, $e->getCode());
+
+            return;
+        }
+
+        $this->fail('The exception parameter was not handled correctly');
+    }
 }

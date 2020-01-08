@@ -25,6 +25,7 @@ class ErrorCodes
     const SECURITY_VERIFICATION_FAILED = 1011;
     const RESPONSE_RESULT_UNKNOWN_ERROR = 1012;
     const SHOULD_BE_INSTANCEOF_MESSAGE = 1013;
+    const MESSAGE_REQUIRED = 1014;
 
     const MESSAGES = [
         self::RESPONSE_FAILED     => 'http request failed',
@@ -43,5 +44,6 @@ class ErrorCodes
         self::SECURITY_VERIFICATION_FAILED      => 'security verification failed, reason is: :message',
         self::RESPONSE_RESULT_UNKNOWN_ERROR     => 'response result is unknown error, code is: :code, message is: :message',
         self::SHOULD_BE_INSTANCEOF_MESSAGE      => 'function toDingTalkRobot in the $notification should return instanceof '.Message::class,
+        self::MESSAGE_REQUIRED                  => 'Please set message object',
     ];
 }

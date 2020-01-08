@@ -179,7 +179,7 @@ class DingtalkRobot
     public function send(): array
     {
         if (is_null($this->message)) {
-            throw new InvalidConfigurationException('Please set message object');
+            throw new InvalidConfigurationException(null, ErrorCodes::MESSAGE_REQUIRED);
         }
 
         $query = [
