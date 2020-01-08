@@ -1,24 +1,12 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Test;
-
 
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\ServiceProvider;
 
 class GuzzleProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
     /**
      * 注册服务
      *
