@@ -115,7 +115,7 @@ class DingtalkRobot
             }
 
             if (! is_string($securitySignature) || strpos($securitySignature, 'SEC') !== 0) {
-                throw new InvalidConfigurationException(null, ErrorCodes::INVALID_SECURITY_VALUES_SIGNATURE);
+                throw new InvalidConfigurationException(null, ErrorCodes::INVALID_SECURITY_SIGNATURE);
             }
         }
 

@@ -5,9 +5,29 @@ namespace Calchen\LaravelDingtalkRobot\Test;
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
 use Calchen\LaravelDingtalkRobot\Exceptions\Exception;
+use Calchen\LaravelDingtalkRobot\Message\TextMessage;
+use Calchen\LaravelDingtalkRobot\Test\Notifications\TextAtAllNotification;
 
 class DingtalkRobotTest extends TestCase
 {
+    public function testNoneConfig()
+    {
+        $config = app('config')->get('dingtalk_robot');
+        try {
+            app('config')->set('dingtalk_robot', 123);
+            $robot = dingtalk_robot();
+            $robot->robot('keyworkds');
+        } catch (Exception $e) {
+            $this->assertEquals(ErrorCodes::DINGTALK_ROBOT_CONFIG_IS_EMPTY, $e->getCode());
+
+            return;
+        } finally {
+            app('config')->set('dingtalk_robot', $config);
+        }
+
+        $this->fail('The exception parameter was not handled correctly');
+    }
+
     public function testInvalidHttpClientName()
     {
         try {
@@ -59,9 +79,9 @@ class DingtalkRobotTest extends TestCase
     {
         try {
             app('config')->set('dingtalk_robot.testInvalidSecurityType', [
-                'access_token' => 'secret',
+                'access_token'   => 'secret',
                 'security_types' => [
-                    'unknown'
+                    'unknown',
                 ],
             ]);
 
@@ -76,21 +96,42 @@ class DingtalkRobotTest extends TestCase
         $this->fail('The exception parameter was not handled correctly');
     }
 
-    public function testInvalidSecurityValueSignature()
+    public function testSecuritySignatureIsUnset()
     {
         try {
-            app('config')->set('dingtalk_robot.testInvalidSecurityValueSignature', [
-                'access_token' => 'secret',
+            app('config')->set('dingtalk_robot.testSecuritySignatureIsUnset', [
+                'access_token'   => 'secret',
                 'security_types' => [
-                    DingtalkRobot::SECURITY_TYPES[2]
+                    DingtalkRobot::SECURITY_TYPES[2],
+                ],
+            ]);
+
+            $robot = dingtalk_robot();
+            $robot->robot('testSecuritySignatureIsUnset');
+        } catch (Exception $e) {
+            $this->assertEquals(ErrorCodes::SECURITY_SIGNATURE_IS_NECESSARY, $e->getCode());
+
+            return;
+        }
+
+        $this->fail('The exception parameter was not handled correctly');
+    }
+
+    public function testInvalidSecuritySignature()
+    {
+        try {
+            app('config')->set('dingtalk_robot.testInvalidSecuritySignature', [
+                'access_token'       => 'secret',
+                'security_types'     => [
+                    DingtalkRobot::SECURITY_TYPES[2],
                 ],
                 'security_signature' => 'signature',
             ]);
 
             $robot = dingtalk_robot();
-            $robot->robot('testInvalidSecurityValueSignature');
+            $robot->robot('testInvalidSecuritySignature');
         } catch (Exception $e) {
-            $this->assertEquals(ErrorCodes::INVALID_SECURITY_VALUES_SIGNATURE, $e->getCode());
+            $this->assertEquals(ErrorCodes::INVALID_SECURITY_SIGNATURE, $e->getCode());
 
             return;
         }
@@ -107,6 +148,50 @@ class DingtalkRobotTest extends TestCase
             $this->assertEquals(ErrorCodes::MESSAGE_REQUIRED, $e->getCode());
 
             return;
+        }
+
+        $this->fail('The exception parameter was not handled correctly');
+    }
+
+    public function testOldRobotSecurityType()
+    {
+        try {
+            app('config')->set('dingtalk_robot.testOldRobotSecurityType', [
+                'access_token'       => 'secret',
+                'security_types'     => [
+                    null,
+                    DingtalkRobot::SECURITY_TYPES[2],
+                ],
+                'security_signature' => 'signature',
+            ]);
+
+            $robot = dingtalk_robot();
+            $robot->robot('testOldRobotSecurityType');
+        } catch (Exception $e) {
+            $this->assertEquals(ErrorCodes::OLD_ROBOT_SECURITY_TYPE_INVALID, $e->getCode());
+
+            return;
+        }
+
+        $this->fail('The exception parameter was not handled correctly');
+    }
+
+    public function testIncorrectSignature()
+    {
+        $config = app('config')->get('dingtalk_robot.signature');
+        try {
+            app('config')->set('dingtalk_robot.signature.security_signature', $config['security_signature'].'1');
+            $robot = dingtalk_robot();
+            $message = new TextMessage('我就是我, 是不一样的烟火');
+            $message->setRobot('signature');
+            $robot->setMessage($message);
+            $robot->send();
+        } catch (Exception $e) {
+            $this->assertEquals(ErrorCodes::SECURITY_VERIFICATION_FAILED, $e->getCode());
+
+            return;
+        } finally {
+            app('config')->set('dingtalk_robot.signature', $config);
         }
 
         $this->fail('The exception parameter was not handled correctly');
