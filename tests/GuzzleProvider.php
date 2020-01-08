@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Calchen\LaravelDingtalkRobot\Test;
-
 
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\ServiceProvider;
