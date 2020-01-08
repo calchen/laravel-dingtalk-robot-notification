@@ -61,7 +61,7 @@ class DingtalkRobotTest extends TestCase
             app('config')->set('dingtalk_robot.testInvalidSecurityType', [
                 'access_token' => 'secret',
                 'security_types' => [
-                    'unknown'
+                    'unknown',
                 ],
             ]);
 
@@ -82,7 +82,7 @@ class DingtalkRobotTest extends TestCase
             app('config')->set('dingtalk_robot.testInvalidSecurityValueSignature', [
                 'access_token' => 'secret',
                 'security_types' => [
-                    DingtalkRobot::SECURITY_TYPES[2]
+                    DingtalkRobot::SECURITY_TYPES[2],
                 ],
                 'security_signature' => 'signature',
             ]);
