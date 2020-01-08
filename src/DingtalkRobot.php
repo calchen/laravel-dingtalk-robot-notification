@@ -160,8 +160,8 @@ class DingtalkRobot
     {
         if (! self::$httpClient instanceof ClientInterface) {
             $configs = config('dingtalk_robot');
-            if (isset($configs['http_client_name']) && class_exists($configs['http_client_name'])) {
-                self::$httpClient = App::make($configs['http_client_name']);
+            if (isset($configs['http_client_name']) && app()->has($configs['http_client_name'])) {
+                self::$httpClient = app($configs['http_client_name']);
             }
 
             if (! self::$httpClient instanceof ClientInterface) {

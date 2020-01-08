@@ -6,7 +6,6 @@ use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
 use Calchen\LaravelDingtalkRobot\Exceptions\Exception;
 use Calchen\LaravelDingtalkRobot\Message\TextMessage;
-use Calchen\LaravelDingtalkRobot\Test\Notifications\TextAtAllNotification;
 
 class DingtalkRobotTest extends TestCase
 {
@@ -195,5 +194,25 @@ class DingtalkRobotTest extends TestCase
         }
 
         $this->fail('The exception parameter was not handled correctly');
+    }
+
+    public function testHttpClient()
+    {
+        try {
+            app('config')->set('dingtalk_robot.http_client_name', 'guzzle');
+            $robot = dingtalk_robot();
+            $message = new TextMessage('我就是我, 是不一样的烟火');
+            $message->setRobot('signature');
+            $robot->setMessage($message);
+            $robot->send();
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
+
+            return;
+        } finally {
+            app('config')->set('dingtalk_robot.http_client_name', null);
+        }
+
+        $this->assertTrue(true);
     }
 }

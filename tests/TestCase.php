@@ -9,7 +9,7 @@ class TestCase extends TestbenchTestCase
 {
     protected function getPackageProviders($app)
     {
-        return [DingtalkRobotNoticeServiceProvider::class];
+        return [GuzzleProvider::class, DingtalkRobotNoticeServiceProvider::class];
     }
 
     protected function getEnvironmentSetUp($app)
@@ -22,17 +22,17 @@ class TestCase extends TestbenchTestCase
             //                'timeout' => 2.0,
             //                'security_type' => null,
             //            ],
-            'keywords' => [
-                'access_token' => env('DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN'),
-                'timeout' => 5.0,
+            'keywords'         => [
+                'access_token'   => env('DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN'),
+                'timeout'        => 5.0,
                 'security_types' => [
                     'keywords',
                 ],
             ],
-            'signature' => [
-                'access_token' => env('DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN'),
-                'timeout' => 5.0,
-                'security_types' => [
+            'signature'        => [
+                'access_token'       => env('DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN'),
+                'timeout'            => 5.0,
+                'security_types'     => [
                     'signature',
                 ],
                 'security_signature' => env('DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES'),
