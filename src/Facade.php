@@ -6,9 +6,8 @@ use Calchen\LaravelDingtalkRobot\Message\Message;
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
 /**
- * Class Facade
+ * Class Facade.
  *
- * @package Calchen\LaravelDingtalkRobot
  * @method static robot($name = 'default')
  * @method static setMessage(Message $message)
  * @method static getMessage()
