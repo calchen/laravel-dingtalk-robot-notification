@@ -3,6 +3,7 @@
 namespace Calchen\LaravelDingtalkRobot\Test;
 
 use Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider;
+use Calchen\LaravelDingtalkRobot\Facade;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
@@ -10,6 +11,13 @@ class TestCase extends TestbenchTestCase
     protected function getPackageProviders($app)
     {
         return [GuzzleProvider::class, DingtalkRobotNoticeServiceProvider::class];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'DingtalkRobot' => Facade::class,
+        ];
     }
 
     protected function getEnvironmentSetUp($app)

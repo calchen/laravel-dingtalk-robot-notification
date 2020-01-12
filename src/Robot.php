@@ -19,7 +19,7 @@ class Robot
 
     public function __construct($name = 'default')
     {
-        $this->name = $name;
+        $this->setName($name);
     }
 
     /**

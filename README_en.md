@@ -1,7 +1,15 @@
-<h1 align="center"> Laravel-dingtalk-robot-notification </h1>
-
-<p align="center"> 钉钉群机器人 Laravel/Lumen 扩展包 </p>
-<p align="center">
+<h1 align="center"> laravel-dingtalk-robot-notification </h1>
+<p align="center"> 阿里云消息服务（MNS） Laravel/Lumen 扩 扩展包 </p>
+<p align="center">  
+    <a href="https://github.styleci.io/repos/205573394">
+        <img alt="Style CI" src="https://github.styleci.io/repos/166196221/shield?style=flat">
+    </a>
+    <a href="https://travis-ci.com/calchen/laravel-dingtalk-robot-notification">
+        <img alt="Travis CI" src="https://img.shields.io/travis/com/calchen/laravel-dingtalk-robot-notification.svg">
+    </a>
+    <a href='https://coveralls.io/github/calchen/laravel-dingtalk-robot-notification?branch=master'>
+        <img alt='Coverage Status' src='https://coveralls.io/repos/github/calchen/laravel-dingtalk-robot-notification/badge.svg?branch=master'/>
+    </a>
     <a href="https://packagist.org/packages/calchen/laravel-dingtalk-robot-notification">
         <img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/calchen/laravel-dingtalk-robot-notification.svg">
     </a>
@@ -13,79 +21,83 @@
     </a>
 </p>
 
-## 功能说明
-实现了 [钉钉群机器人](https://open-doc.dingtalk.com/docs/doc.htm?treeId=257&articleId=105733&docType=1) 的消息推送功能，并通过自定义通道使得机器人的消息推送也可以使用 Laravel 的消息通知（Notification）进行发送，同时对也 Lumen 也进行了支持。
+> [English](https://github.com/calchen/laravel-dingtalk-robot-notification/blob/master/README_en.md)
 
-## 依赖情况
-```json
-"php": ">=7.1",
-"guzzlehttp/guzzle": "~6.0",
-"phpunit/phpunit": "^7.0",
-"illuminate/notifications": "^5.7",
-"ramsey/uuid": "^3.8"
-```
-如遇到依赖过高无法安装的问题请提 Issues。
+这是一个[钉钉群机器人](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq)的 Laravel/Lumen 消息通知（Notification）扩展包 
 
-## 安装方法
+## 安装
+
+Laravel/Lumen 5.5 ~ 6.x
 
 ```shell
-$ composer require calchen/laravel-dingtalk-robot-notification -vvv
+$ composer require calchen/laravel-dingtalk-robot-notification:^2.0
 ```
-
-## 配置
 
 ### Laravel
 
-安装成功后执行
+Laravel 5.5+ 已经实现了扩展包发现机制，您不需要进行额外的加载操作
 
+除此之外还需要将配置文件发布出来：
 ```shell
-$ php artisan vendor:publish --provider="Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider"
+php artisan vendor:publish --provider="Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider"
 ```
-会将 dingtalk_robot.php 添加到您项目的配置文件目录中。
 
-### Lumen 
+### Lumen
 
-安装成功后首先需要在 bootstrap/app.php 中注册 Provider
+Lumen 并未移植扩展包自动发现机制，所以需要手动加载扩展包并复制配置文件。
 
+打开配置文件 `bootstrap/app.php` 并在大约 81 行左右添加如下内容：
 ```php
 $app->register(Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider::class);
 ```
 
-如果使用 Laravel 的 Notifications 还需要额外增加 Notifications 相关 Provider
+将文件系统配置文件从 `vendor/calchen/laravel-dingtalk-robot-notification/config/dingtalk_robot.php` 复制到 `config/dingtalk_robot.php`
 
+## 配置
+
+打开配置文件 `config/dingtalk_robot.php` 并按照如下格式添加或修改配置：
 ```php
-$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+'robotName' => [
+    'access_token' => 'xxxx',
+    'timeout' => 2.0,
+    'security_types' => [
+        'signature',
+    ],
+    'security_signature' => 'SECxxxx',
+],
 ```
+请注意，如果需要配置多个机器人，请重复以上操作，并为不同机器人给予不同的 robotName
 
-如果使用 Facades 可以设置别名
-```php
-$app->withFacades(true, [
-    Illuminate\Support\Facades\Notification::class => 'Notification'
-]);
-```
+### 配置说明
+| 配置项             	| 必须 	| 数据类型    	| 说明                                          	| 备注                                                                                                       	|
+|--------------------	|------	|-------------	|-----------------------------------------------	|------------------------------------------------------------------------------------------------------------	|
+| http_client_name   	| 否   	| string/null 	| 驱动名称                                      	| 默认值：null，注入在 Laravel 中的 Guzzle 实例的名称，以便替换 HTTP 客户端                                  	|
+| robotName          	| 是   	| string      	| 机器人名称                                    	| 这个名称为了区别不同的机器人                                                                               	|
+| access_token       	| 是   	| string      	| 创建机器人后 Webhook URL 中 access_token 的值 	|                                                                                                            	|
+| timeout            	| 否   	| int/float   	| 超时时间                                      	| 默认值：2.0秒，具体见 http://docs.guzzlephp.org/en/stable/request-options.html#timeout                     	|
+| security_types     	| 是   	| array       	| 安全设置                                      	| 旧机器人是不存在该项配置的传 null 或不设置该配置项；新机器人可以组合选择：自定义关键字、加签、IP地址（段） 	|
+| security_types.*   	| 是   	| string/null 	| 设置项                                        	| 枚举值：null、keywords、signature、ip                                                                      	|
+| security_signature 	| 否   	| string      	| 安全模式包含加签时需要的密钥字符串            	| 应当以 SEC 开头                                                                                            	|
 
-然后需要您手动的将 vendor/calchen/laravel-dingtalk-robot-notification/config/dingtalk_robot.php 文件拷贝至您项目的配置文件目录中。
+### 获取 access_token 并设置安全设置
 
-### 获取 access_token
+首先在钉钉群选择添加一个群机器人（智能群助手），如果您不知道如何设置请查看 [钉钉文档](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq)，请注意这里需要设置的是"自定义"类型的机器人。
 
-首先在钉钉中发起群聊并设置一个群机器人，如果您不知道如何设置请查看 [钉钉文档](https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7386797.0.0.39a94a97L4qlKb&source=search&treeId=257&articleId=105733&docType=1#s1)，请注意这里需要设置的是"自定义"类型的机器人。
+根据您的需要设置机器人名字，并选择安全设置。在完成后您将获得一个 webhook 地址，该地址中 access_token 的值即配置中使用到的 access_token 的值，
+请妥善保存该 access_token。选择的安全设置就是配置中 security_types 的值，如果您选择了“加签”的安全设置，您还需要妥善保存密钥，该密钥即配置中 security_signature 的值
 
-在设置完成后您将获得一个 webhook 地址，该地址中 access_token 的值即下文中使用到的 access_token 的值，请妥善保存该 access_token。
+### HTTP 客户端注入
 
-### 配置文件参数
-可在 .env 文件中进行配置
-- 配置文件默认包含名为 default 的机器人，可根据实际需要配置多个机器人
-- access_token 为上文获取到的 webhook 地址中的 access_token。
-- timeout 为请求超时时间，详见 [Guzzle](http://docs.guzzlephp.org/en/stable/request-options.html#timeout)
+为了方便在某些情况下需要统一管理扩展包使用的 HTTP 客户端，提供了 `http_client_name` 配置项，以实现从 Laravel 容器中获取已经注入的 Guzzle 实例 
 
-## 使用消息通知（Notification）
+## 使用方法
 
 Tips：为了方便快速调试功能，内置了一个使用了  Notifiable Trait 的类：Calchen\LaravelDingtalkRobot\Robot ，以下均以此对象为例，实际开发中请务必根据您项目情况进行对应处理。
 
 首先需要先创建一个 TestDingtalkNotification ，如果是 Laravel 可通过 artisan 命令创建
 
-```php
-$ php artisan make:notification TestDingtalkNotification
+```shell
+php artisan make:notification TestDingtalkNotification
 ```
 
 如果是 Lumen 那么可能需要您手动创建 app/Notifications 文件夹并创建  TestDingtalkNotification.php 文件
@@ -121,7 +133,12 @@ class TestDingtalkNotification extends Notification
         return [DingtalkRobotChannel::class];
     }
 
-    public function toDingTalkRobot($notifiable)
+    /**
+     * @param $notifiable
+     *
+     * @return Message
+     */
+    public function toDingTalkRobot($notifiable): Message
     {
         /**
          *  $message 根据消息类型的不同由 Calchen\LaravelDingtalkRobot\Message\Message 的各个子类创建
@@ -129,12 +146,16 @@ class TestDingtalkNotification extends Notification
          * @var Message $message 
          */
         $message = ...;
+    
+        // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+        $message->setRobot($notifiable->getName());
+
         return $message;
     }
 }
 ```
 
-根据 [Laravel](https://laravel-china.org/docs/laravel/5.7/notifications/2284#sending-notifications) 文档发送通知既可以使用 Notifiable Trait
+根据 [Laravel](https://laravel.com/docs/6.x/notifications) 文档发送通知可以使用 Notifiable Trait
 ```php
 use Calchen\LaravelDingtalkRobot\Robot;
 
@@ -146,7 +167,9 @@ use Calchen\LaravelDingtalkRobot\Robot;
 \Notification::send(new Robot, new TestDingtalkNotification());
 ```
 
-TestDingtalkNotification 中的 $message = ...; 部分可替换成下面的五种消息类型。
+**重点：**
+
+TestDingtalkNotification 中的 toDingTalkRobot 方法中可使用下面的五种消息类型。
 
 ### 文本类型消息
 
@@ -157,18 +180,16 @@ public function toDingTalkRobot($notifiable)
 {
     $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
     
-    // 可@某人或某些人
+    // 可@某人或某些人，被@的人的手机号应出现在上面的消息体中
     $message->at('1825718XXXX');
-    
     // $message->at(['1825718XXXX', '1825718XXXY']);
     
-    // 可@全部人
-    
+    // 可@全部人，被@的人的手机号不需要出现在消息体中
     // $message->atAll();
     
-    // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
-    $message->setConnection('robot_dev');
-    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
+       
     return  $message;
 }
 ```
@@ -180,7 +201,14 @@ use Calchen\LaravelDingtalkRobot\Message\LinkMessage;
 
 public function toDingTalkRobot($notifiable)
 {
-    $message = new LinkMessage('自定义机器人协议', '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。', 'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1');
+    $message = new LinkMessage(
+        '自定义机器人协议',
+        '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。',
+        'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1'
+    );
+    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -193,16 +221,20 @@ use Calchen\LaravelDingtalkRobot\Message\MarkdownMessage;
 
 public function toDingTalkRobot($notifiable)
 {
-    $message = new MarkdownMessage('杭州天气', "#### 杭州天气  \n > 9度，@1825718XXXX 西北风1级，空气良89，相对温度73%\n\n > ![screenshot](http://i01.lw.aliimg.com/media/lALPBbCc1ZhJGIvNAkzNBLA_1200_588.png)\n  > ###### 10点20分发布 [天气](http://www.thinkpage.cn/) ");
+    $message = new MarkdownMessage(
+        '杭州天气',
+        "#### 杭州天气  \n > 9度，@1825718XXXX 西北风1级，空气良89，相对温度73%\n\n > ![screenshot](http://i01.lw.aliimg.com/media/lALPBbCc1ZhJGIvNAkzNBLA_1200_588.png)\n  > ###### 10点20分发布 [天气](http://www.thinkpage.cn/) "
+    );
     
-    // 可@某人或某些人
+    // 可@某人或某些人，被@的人的手机号应出现在上面的消息体中
     $message->at('1825718XXXX');
-    
     // $message->at(['1825718XXXX', '1825718XXXY']);
     
-    // 可@全部人
-    
+    // 可@全部人，被@的人的手机号不需要出现在消息体中
     // $message->atAll();
+    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -217,8 +249,14 @@ use Calchen\LaravelDingtalkRobot\Message\ActionCardMessage;
 
 public function toDingTalkRobot($notifiable)
 {
-    $message = new ActionCardMessage('乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身', "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划");
+    $message = new ActionCardMessage(
+        '乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身',
+        "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划"
+    );
     $message->setSingle('阅读全文', 'https://www.dingtalk.com/');
+    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -231,11 +269,17 @@ use Calchen\LaravelDingtalkRobot\Message\ActionCardMessage;
 
 public function toDingTalkRobot($notifiable)
 {
-    $message = new ActionCardMessage('乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身', "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划");
+    $message = new ActionCardMessage(
+        '乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身',
+        "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划"
+    );
     
     // 添加一个或多个按钮
     $message->addButton('内容不错', 'https://www.dingtalk.com/');
     $message->addButton('不感兴趣', 'https://www.dingtalk.com/');
+    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -251,8 +295,19 @@ public function toDingTalkRobot($notifiable)
     $message = new FeedCardMessage();
     
     // 添加一个或多个链接
-    $message->addLink('时代的火车向前开', 'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI', 'https://www.dingtalk.com/');
-    $message->addLink('时代的火车向前开2', 'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI', 'https://www.dingtalk.com/');
+    $message->addLink(
+        '时代的火车向前开',
+        'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI',
+        'https://www.dingtalk.com/'
+    );
+    $message->addLink(
+        '时代的火车向前开2',
+        'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI',
+        'https://www.dingtalk.com/'
+    );
+    
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -273,10 +328,11 @@ use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
 public function toDingTalkRobot($notifiable)
 {
-    $message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
+    $message = new TextMessage('我就是我, 是不一样的烟火');
     
-    // 可通过 setConnection 设置向指定的机器人发送消息，如果不指定则为默认机器人
-    $message->setConnection($notifiable->getName());
+    // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
+    // 这里需要 $notifiable 内保存机器人的名称，并提供获取的方法，方可实现给不同机器人发同一条消息
+    $message->setRobot($notifiable->getName());
     
     return  $message;
 }
@@ -284,25 +340,29 @@ public function toDingTalkRobot($notifiable)
 
 ## 不使用消息通知（Notification）
 
-本扩展也支持不使用 Notification 直接调用机器人接口发送信息，有多种方式可以实现：
-
-### 辅助函数 dingtalk_robot
-```php
-use Calchen\LaravelDingtalkRobot\Message\TextMessage;
-
-$message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
-
-dingtalk_robot()->setMessage($message)->send();
-```
+如果在非 Laravel/Lumen 框架中使用或者您不想使用 Notification ，而是直接调用机器人接口发送信息，那么有多种方式可以实现：
 
 ### 容器解析
+
 ```php
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
-$message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
+$message = new TextMessage('我就是我, 是不一样的烟火');
+$message->setRobot('机器人名字');
 
 app(DingtalkRobot::class)->setMessage($message)->send();
+```
+
+### 辅助函数 dingtalk_robot
+
+```php
+use Calchen\LaravelDingtalkRobot\Message\TextMessage;
+
+$message = new TextMessage('我就是我, 是不一样的烟火');
+$message->setRobot('机器人名字');
+
+dingtalk_robot()->setMessage($message)->send();
 ```
 
 ### 直接创建并调用接口
@@ -310,15 +370,29 @@ app(DingtalkRobot::class)->setMessage($message)->send();
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Message\TextMessage;
 
-$message = new TextMessage('我就是我,  @1825718XXXX 是不一样的烟火');
+$message = new TextMessage('我就是我, 是不一样的烟火');
+$message->setRobot('机器人名字');
 
 (new DingtalkRobot)->setMessage($message)->send();
 ```
 
+## 从1.x升级到2.x
+
+首先感谢您使用 1.x 版本的扩展包，因为钉钉机器人更新了安全设置，在升级过程中为了使得代码更整洁因此出现了无法兼容的情况，故此将新版升级至2.x版本。这里将明确给出两个版本的差异，以便您以最少的成本进行升级。
+
+
+
+### 配置项的差异
+
+
+
+
 
 ## 鸣谢
-感谢 [王举](https://github.com/wowiwj)，他的 [wangju/ding-notice](https://github.com/wowiwj/ding-notice) 项目给予了我很多启发。本项目中的很多代码原形均来自于该项目。 
 
-## License
+感谢 [王举](https://github.com/wowiwj)，他的 [wangju/ding-notice](https://github.com/wowiwj/ding-notice) 项目给予了我很多启发。本项目中的部分代码原形来自于该项目。 
 
-MIT
+
+## 开源协议
+
+[MIT](http://opensource.org/licenses/MIT)
