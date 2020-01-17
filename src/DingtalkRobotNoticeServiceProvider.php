@@ -6,9 +6,6 @@ use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
 
-/**
- * DingNotice SDK 的 ServiceProvider 只支持 Laravel.
- */
 class DingtalkRobotNoticeServiceProvider extends ServiceProvider
 {
     /**
