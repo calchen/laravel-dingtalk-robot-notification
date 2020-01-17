@@ -19,7 +19,7 @@ class Robot
 
     public function __construct($name = 'default')
     {
-        $this->name = $name;
+        $this->setName($name);
     }
 
     /**
@@ -33,7 +33,7 @@ class Robot
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(string $name)
     {
         $this->name = $name;
     }

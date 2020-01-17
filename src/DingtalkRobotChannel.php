@@ -2,6 +2,8 @@
 
 namespace Calchen\LaravelDingtalkRobot;
 
+use Calchen\LaravelDingtalkRobot\Exceptions\ErrorCodes;
+use Calchen\LaravelDingtalkRobot\Exceptions\Exception;
 use Calchen\LaravelDingtalkRobot\Message\Message;
 use Illuminate\Notifications\Notification;
 
@@ -18,14 +20,14 @@ class DingtalkRobotChannel
      * @param              $notifiable
      * @param Notification $notification
      *
-     * @throws Exception\Exception
+     * @throws Exception
      */
     public function send($notifiable, Notification $notification)
     {
         /** @var Message $message */
         $message = $notification->toDingTalkRobot($notifiable);
-        if (is_null($message)) {
-            return;
+        if (! $message instanceof Message) {
+            throw new Exception(null, ErrorCodes::SHOULD_BE_INSTANCEOF_MESSAGE);
         }
 
         $ding = new DingtalkRobot();

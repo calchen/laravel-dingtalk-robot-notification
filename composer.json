@@ -1,7 +1,23 @@
 {
     "name": "calchen/laravel-dingtalk-robot-notification",
-    "description": "钉钉群机器人 Laravel/Lumen 消息通知扩展包（Dingtalk robot message notifications for Laravel/Lumen）",
-    "keywords": ["laravel", "lumen", "dingtalk", "laravel notification"],
+    "description": "钉钉智能群助手 Laravel/Lumen 消息通知扩展包（Dingtalk robot message notifications for Laravel/Lumen）",
+    "keywords": [
+        "laravel",
+        "lumen",
+        "notification",
+        "laravel notification",
+        "lumen notification",
+        "钉钉",
+        "钉钉群机器人",
+        "群机器人",
+        "钉钉智能群助手",
+        "智能群助手",
+        "dingtalk",
+        "group assistant",
+        "robot",
+        "group robot",
+        "custom channel"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,13 +27,14 @@
     ],
     "require": {
         "php": "^7.0",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^6.0",
-        "illuminate/notifications": "^5.5|^6.0"
+        "illuminate/notifications": "^5.5|^6.0",
+        "illuminate/support": "^5.5|^6.0"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.1",
-        "orchestra/testbench": "^3.5|^4.0",
-        "friendsofphp/php-cs-fixer": "^2.15"
+        "orchestra/testbench": "^3.5|^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -29,14 +46,17 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Calchen\\LaravelOcr\\Test\\": "tests"
+            "Calchen\\LaravelDingtalkRobot\\Test\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Calchen\\LaravelDingtalkRobot\\DingtalkRobotNoticeServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "DingtalkRobot": "Calchen\\LaravelDingtalkRobot\\Facade"
+            }
         }
     }
 }

@@ -5,30 +5,38 @@ namespace Calchen\LaravelDingtalkRobot\Message;
 /**
  * link类型.
  *
- * Class DingtalkLinkMessage
+ * Class LinkMessage
  */
 class LinkMessage extends Message
 {
     /**
-     * DingtalkLinkMessage constructor.
+     * LinkMessage constructor.
      *
-     * @param string $title
-     * @param string $text
-     * @param string $messageUrl
-     * @param string $picUrl
+     * @param string|null $title      消息标题
+     * @param string|null $text       消息内容。如果太长只会部分展示
+     * @param string|null $messageUrl 点击消息跳转的 URL
+     * @param string      $picUrl     图片 URL
      */
-    public function __construct(string $title, string $text, string $messageUrl, string $picUrl = '')
-    {
-        $this->setMessage($title, $text, $messageUrl, $picUrl);
+    public function __construct(
+        string $title = null,
+        string $text = null,
+        string $messageUrl = null,
+        string $picUrl = ''
+    ) {
+        if (! is_null($title) && ! is_null($text) && ! is_null($messageUrl)) {
+            $this->setMessage($title, $text, $messageUrl, $picUrl);
+        }
     }
 
     /**
-     * @param string $title
-     * @param string $text
-     * @param string $messageUrl
-     * @param string $picUrl
+     * @param string $title      消息标题
+     * @param string $text       消息内容。如果太长只会部分展示
+     * @param string $messageUrl 点击消息跳转的 URL
+     * @param string $picUrl     图片 URL
+     *
+     * @return LinkMessage
      */
-    public function setMessage(string $title, string $text, string $messageUrl, string $picUrl = ''): void
+    public function setMessage(string $title, string $text, string $messageUrl, string $picUrl = ''): self
     {
         $this->message = [
             'msgtype' => 'link',
@@ -39,5 +47,7 @@ class LinkMessage extends Message
                 'messageUrl' => $messageUrl,
             ],
         ];
+
+        return $this;
     }
 }

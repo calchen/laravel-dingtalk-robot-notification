@@ -18,4 +18,17 @@
             <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
+
+    <php>
+        <env name="AT_PERSON_PHONE" value=""/>
+        <env name="DINGTALK_ROBOT_DEFAULT_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_KEYWORDS_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_SIGNATURE_ACCESS_TOKEN" value=""/>
+        <env name="DINGTALK_ROBOT_SIGNATURE_SECURITY_VALUES" value=""/>
+        <env name="DINGTALK_ROBOT_ACCESS_TOKEN" value=""/>
+    </php>
+
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
 </phpunit>

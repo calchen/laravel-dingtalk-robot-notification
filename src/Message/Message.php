@@ -15,7 +15,7 @@ abstract class Message
     // 被@人列表
     protected $at = [];
 
-    // 设置机器人名称，默认为 default
+    // 设置机器人名称，默认为 default，会根据名称去找配置
     protected $robot = 'default';
 
     /**
@@ -25,17 +25,17 @@ abstract class Message
      */
     public function getMessage(): array
     {
-        return $this->message + $this->at;
+        return $this->message + ['at' => $this->at];
     }
 
     /**
      * 设置接受消息的机器人名称.
      *
-     * @param $robot
+     * @param string $robot
      *
      * @return Message
      */
-    public function setRobot($robot): self
+    public function setRobot(string $robot): self
     {
         $this->robot = $robot;
 

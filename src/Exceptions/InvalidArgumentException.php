@@ -1,6 +1,6 @@
 <?php
 
-namespace Calchen\LaravelDingtalkRobot\Exception;
+namespace Calchen\LaravelDingtalkRobot\Exceptions;
 
 /**
  * 入参异常.
