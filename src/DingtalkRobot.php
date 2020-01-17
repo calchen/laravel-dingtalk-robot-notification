@@ -94,8 +94,8 @@ class DingtalkRobot
             throw new InvalidConfigurationException(null, ErrorCodes::ACCESS_TOKEN_IS_NECESSARY);
         }
 
-        // security_types 只能是允许的值
-        $securityTypes = Arr::get($config, 'security_types', []);
+        // security_types 只能是允许的值，默认认为是旧机器人
+        $securityTypes = Arr::get($config, 'security_types', [null]);
         if (! is_array($securityTypes) || count($securityTypes) == 0 ||
             count(array_diff($securityTypes, self::SECURITY_TYPES)) != 0
         ) {

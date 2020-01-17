@@ -4,13 +4,19 @@
     "keywords": [
         "laravel",
         "lumen",
-        "dingtalk",
+        "notification",
         "laravel notification",
+        "lumen notification",
         "钉钉",
         "钉钉群机器人",
         "群机器人",
         "钉钉智能群助手",
-        "智能群助手"
+        "智能群助手",
+        "dingtalk",
+        "group assistant",
+        "robot",
+        "group robot",
+        "custom channel"
     ],
     "license": "MIT",
     "authors": [

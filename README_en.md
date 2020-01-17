@@ -1,5 +1,5 @@
 <h1 align="center"> laravel-dingtalk-robot-notification </h1>
-<p align="center"> 阿里云消息服务（MNS） Laravel/Lumen 扩 扩展包 </p>
+<p align="center"> Dingtalk Robot for Laravel/Lumen </p>
 <p align="center">  
     <a href="https://github.styleci.io/repos/205573394">
         <img alt="Style CI" src="https://github.styleci.io/repos/166196221/shield?style=flat">
@@ -21,13 +21,13 @@
     </a>
 </p>
 
-> [English](https://github.com/calchen/laravel-dingtalk-robot-notification/blob/master/README_en.md)
+> [中文](https://github.com/calchen/laravel-dingtalk-robot-notification/blob/master/README.md)
 
-这是一个[钉钉群机器人](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq)的 Laravel/Lumen 消息通知（Notification）扩展包 
+This is Laravel/Lumen custom notification channel for [DingTalk group assistant](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq).
 
-## 安装
+## Installing
 
-Laravel/Lumen 5.5 ~ 6.x
+Composer is recommended for installation:
 
 ```shell
 $ composer require calchen/laravel-dingtalk-robot-notification:^2.0
@@ -35,27 +35,30 @@ $ composer require calchen/laravel-dingtalk-robot-notification:^2.0
 
 ### Laravel
 
-Laravel 5.5+ 已经实现了扩展包发现机制，您不需要进行额外的加载操作
+For Laravel 5.5+ package auto discovery feature will help you loading everything you need. But you still need to publish the configuration file:
 
-除此之外还需要将配置文件发布出来：
 ```shell
 php artisan vendor:publish --provider="Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider"
 ```
 
 ### Lumen
 
-Lumen 并未移植扩展包自动发现机制，所以需要手动加载扩展包并复制配置文件。
+Open your `bootstrap/app.php` and add this line:
 
-打开配置文件 `bootstrap/app.php` 并在大约 81 行左右添加如下内容：
 ```php
 $app->register(Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider::class);
 ```
 
-将文件系统配置文件从 `vendor/calchen/laravel-dingtalk-robot-notification/config/dingtalk_robot.php` 复制到 `config/dingtalk_robot.php`
+Copy configuration file from `vendor/calchen/laravel-dingtalk-robot-notification/config/dingtalk_robot.php`  to `config/dingtalk_robot.php`
 
-## 配置
+### Other frameworks
 
-打开配置文件 `config/dingtalk_robot.php` 并按照如下格式添加或修改配置：
+Without considering the loading problem, please use the global function `\dingtalk_robot()` or directly create the \Calchen\LaravelDingtalkRobot\DingtalkRobot instance to send the message.
+
+## Configuration
+
+Open your `config/dingtalk_robot.php` and add these lines:
+
 ```php
 'robotName' => [
     'access_token' => 'xxxx',
@@ -66,18 +69,20 @@ $app->register(Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider::
     'security_signature' => 'SECxxxx',
 ],
 ```
-请注意，如果需要配置多个机器人，请重复以上操作，并为不同机器人给予不同的 robotName
 
-### 配置说明
-| 配置项             	| 必须 	| 数据类型    	| 说明                                          	| 备注                                                                                                       	|
+If you need to configure more than one robot, repeat the above and give different `robotName` to different robots
+
+### Details
+
+| key             	| required 	| type    	| remarks                                          	| 备注                                                                                                       	|
 |--------------------	|------	|-------------	|-----------------------------------------------	|------------------------------------------------------------------------------------------------------------	|
-| http_client_name   	| 否   	| string/null 	| 驱动名称                                      	| 默认值：null，注入在 Laravel 中的 Guzzle 实例的名称，以便替换 HTTP 客户端                                  	|
-| robotName          	| 是   	| string      	| 机器人名称                                    	| 这个名称为了区别不同的机器人                                                                               	|
-| access_token       	| 是   	| string      	| 创建机器人后 Webhook URL 中 access_token 的值 	|                                                                                                            	|
-| timeout            	| 否   	| int/float   	| 超时时间                                      	| 默认值：2.0秒，具体见 http://docs.guzzlephp.org/en/stable/request-options.html#timeout                     	|
-| security_types     	| 是   	| array       	| 安全设置                                      	| 旧机器人是不存在该项配置的传 null 或不设置该配置项；新机器人可以组合选择：自定义关键字、加签、IP地址（段） 	|
-| security_types.*   	| 是   	| string/null 	| 设置项                                        	| 枚举值：null、keywords、signature、ip                                                                      	|
-| security_signature 	| 否   	| string      	| 安全模式包含加签时需要的密钥字符串            	| 应当以 SEC 开头                                                                                            	|
+| http_client_name   	| N   	| string/null 	| Guzzle 实例的名称                             	| 默认值：null，注入在 Laravel 中的 Guzzle 实例的名称，以便替换 HTTP 客户端                                  	|
+| robotName          	| Y   	| string      	| 机器人名称                                    	| 这个名称为了区别不同的机器人                                                                               	|
+| access_token       	| Y   	| string      	| 创建机器人后 Webhook URL 中 access_token 的值 	|                                                                                                            	|
+| timeout            	| N   	| int/float   	| 超时时间                                      	| 默认值：2.0秒，具体见 [Guzzle 文档](http://docs.guzzlephp.org/en/stable/request-options.html#timeout)      	|
+| security_types     	| Y   	| array       	| 安全设置                                      	| 旧机器人是不存在该项配置的传 null 或不设置该配置项；新机器人可以组合选择：自定义关键字、加签、IP地址（段） 	|
+| security_types.*   	| Y   	| string/null 	| 设置项                                        	| 枚举值：null、keywords、signature、ip                                                                      	|
+| security_signature 	| N   	| string      	| 安全模式包含加签时需要的密钥字符串            	| 应当以 SEC 开头                                                                                            	|                                                                                       	|
 
 ### 获取 access_token 并设置安全设置
 
@@ -88,7 +93,7 @@ $app->register(Calchen\LaravelDingtalkRobot\DingtalkRobotNoticeServiceProvider::
 
 ### HTTP 客户端注入
 
-为了方便在某些情况下需要统一管理扩展包使用的 HTTP 客户端，提供了 `http_client_name` 配置项，以实现从 Laravel 容器中获取已经注入的 Guzzle 实例 
+为了方便在某些情况下需要统一管理扩展包使用的 HTTP 客户端，提供了 `http_client_name` 配置项，以实现从 Laravel 容器中获取已经注入的 Guzzle 实例。如果您不需要手动管理 HTTP 客户端，您可以不设置该配置项或将该配置项值设置成 null。
 
 ## 使用方法
 
@@ -156,11 +161,13 @@ class TestDingtalkNotification extends Notification
 ```
 
 根据 [Laravel](https://laravel.com/docs/6.x/notifications) 文档发送通知可以使用 Notifiable Trait
+
 ```php
 use Calchen\LaravelDingtalkRobot\Robot;
 
 (new Robot)->notify(new TestDingtalkNotification());
 ```
+
 也可以使用 Notification Facade
 
 ```php
@@ -366,6 +373,7 @@ dingtalk_robot()->setMessage($message)->send();
 ```
 
 ### 直接创建并调用接口
+
 ```php
 use Calchen\LaravelDingtalkRobot\DingtalkRobot;
 use Calchen\LaravelDingtalkRobot\Message\TextMessage;
@@ -380,13 +388,37 @@ $message->setRobot('机器人名字');
 
 首先感谢您使用 1.x 版本的扩展包，因为钉钉机器人更新了安全设置，在升级过程中为了使得代码更整洁因此出现了无法兼容的情况，故此将新版升级至2.x版本。这里将明确给出两个版本的差异，以便您以最少的成本进行升级。
 
-
-
 ### 配置项的差异
 
+#### 新增
 
+##### http_client_name
 
+为了方便在某些情况下需要统一管理扩展包使用的 HTTP 客户端，提供了 `http_client_name` 配置项，以实现从 Laravel 容器中获取已经注入的 Guzzle 实例。如果您不需要手动管理 HTTP 客户端，您可以不设置该配置项或将该配置项值设置成 null。
 
+##### 机器人名称.security_types
+
+数据结构为数组。如果您使用的是旧机器人，配置项中无“安全设置”相关内容，那么您可以不设置该字段，或将其设置成：
+
+```php
+'security_types' => [
+    null,
+],
+```
+
+如果您使用的是新机器人，请按照机器人的实际情况配置该项，可以组合选择：自定义关键字、加签、IP地址（段），如：
+
+```php
+'security_types' => [
+    'keywords',   // 自定义关键字
+    'signature',  // 加签
+    'ip',		  // IP地址（段）
+],
+```
+
+##### 机器人名称.security_signature
+
+密钥字符串。当安全模式包含加签时该字段是必须的。请注意，该字符串前三位应该是 SEC。
 
 ## 鸣谢
 
