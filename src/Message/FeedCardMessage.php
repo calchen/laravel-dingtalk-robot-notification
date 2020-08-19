@@ -33,7 +33,7 @@ class FeedCardMessage extends Message
      * @param string $title      单条信息文本
      * @param string $messageUrl 点击单条信息到跳转链接
      * @param string $picUrl     单条信息后面图片的URL
-     * @param bool   $pcSlide    链接在钉钉侧栏打开，false则在浏览器打开
+     * @param bool   $pcSlide    链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      *
      * @return FeedCardMessage
      */
@@ -42,7 +42,7 @@ class FeedCardMessage extends Message
         $this->message['feedCard']['links'][] = [
             'title'      => $title,
             'messageURL' => $this->getFinalUrl($messageUrl, $pcSlide),
-            'picURL'     => $this->getFinalUrl($picUrl, $pcSlide),
+            'picURL'     => $picUrl,
         ];
 
         return $this;

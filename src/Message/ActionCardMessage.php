@@ -87,7 +87,7 @@ class ActionCardMessage extends Message
      *
      * @param string $singleTitle 单个按钮的方案。(设置此项和singleURL后btns无效。)
      * @param string $singleUrl   点击singleTitle按钮触发的URL
-     * @param bool   $pcSlide     链接在钉钉侧栏打开，false则在浏览器打开
+     * @param bool   $pcSlide     链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      *
      * @return $this
      */
@@ -105,7 +105,7 @@ class ActionCardMessage extends Message
      *
      * @param string $title     按钮方案
      * @param string $actionUrl 点击按钮触发的URL
-     * @param bool   $pcSlide   链接在钉钉侧栏打开，false则在浏览器打开
+     * @param bool   $pcSlide   链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      *
      * @return ActionCardMessage
      */

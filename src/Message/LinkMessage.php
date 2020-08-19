@@ -33,7 +33,7 @@ class LinkMessage extends Message
      * @param string $text       消息内容。如果太长只会部分展示
      * @param string $messageUrl 点击消息跳转的 URL
      * @param string $picUrl     图片 URL
-     * @param bool   $pcSlide    链接在钉钉侧栏打开，false则在浏览器打开
+     * @param bool   $pcSlide    链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      *
      * @return LinkMessage
      */
@@ -44,7 +44,7 @@ class LinkMessage extends Message
             'link'    => [
                 'title'      => $title,
                 'text'       => $text,
-                'picUrl'     => $this->getFinalUrl($picUrl, $pcSlide),
+                'picUrl'     => $picUrl,
                 'messageUrl' => $this->getFinalUrl($messageUrl, $pcSlide),
             ],
         ];

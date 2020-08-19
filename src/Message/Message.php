@@ -19,18 +19,6 @@ abstract class Message
     protected $robot = 'default';
 
     /**
-     * 获取最终URL.
-     * @param  string  $url
-     * @param  bool  $pcSlide
-     *
-     * @return string
-     */
-    public function getFinalUrl($url, $pcSlide = true): string
-    {
-        return sprintf('dingtalk://dingtalkclient/page/link?url=%s&pc_slide=%s', urlencode($url), $pcSlide ? 'true' : 'false');
-    }
-
-    /**
      * 获取消息请求的请求体内容.
      *
      * @return array
@@ -62,5 +50,22 @@ abstract class Message
     public function getRobot(): string
     {
         return $this->robot;
+    }
+
+    /**
+     * 将 URL 转换成指定的 schema 形式，以便控制其 PC 端打开方式为钉钉侧边栏或系统默认浏览器
+     *
+     * @link https://ding-doc.dingtalk.com/doc#/serverapi2/iat9q8/e300ae98
+     *
+     * @param string $url
+     * @param bool   $pcSlide
+     *
+     * @return string
+     */
+    public function getFinalUrl(string $url, bool $pcSlide = true): string
+    {
+        return sprintf(
+            'dingtalk://dingtalkclient/page/link?url=%s&pc_slide=%s', urlencode($url), $pcSlide ? 'true' : 'false'
+        );
     }
 }
