@@ -213,6 +213,30 @@ public function toDingTalkRobot($notifiable)
         '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。',
         'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1'
     );
+
+    // 也可以这样写
+    // $message = new LinkMessage();
+    // $message->setMessage(
+    //     '自定义机器人协议',
+    //     '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。',
+    //     'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1'
+    // );
+
+    // 如果想让链接在 PC 端用系统默认浏览器打开可以这样
+    // $message = new LinkMessage(
+    //     '自定义机器人协议',
+    //     '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。',
+    //     'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1',
+    //     false
+    // );
+    //
+    // $message = new LinkMessage();
+    // $message->setMessage(
+    //     '自定义机器人协议',
+    //     '群机器人是钉钉群的高级扩展功能。群机器人可以将第三方服务的信息聚合到群聊中，实现自动化的信息同步。例如：通过聚合GitHub，GitLab等源码管理服务，实现源码更新同步；通过聚合Trello，JIRA等项目协调服务，实现项目信息同步。不仅如此，群机器人支持Webhook协议的自定义接入，支持更多可能性，例如：你可将运维报警提醒通过自定义机器人聚合到钉钉群。',
+    //     'https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Rqyvqo&treeId=257&articleId=105735&docType=1',
+    //     false
+    // );
     
     // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
     $message->setRobot($notifiable->getName());
@@ -261,6 +285,9 @@ public function toDingTalkRobot($notifiable)
         "![screenshot](@lADOpwk3K80C0M0FoA) \n #### 乔布斯 20 年前想打造的苹果咖啡厅 \n\n Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划"
     );
     $message->setSingle('阅读全文', 'https://www.dingtalk.com/');
+
+    // 如果想让链接在 PC 端用系统默认浏览器打开可以这样
+    // $message->setSingle('阅读全文', 'https://www.dingtalk.com/', false);
     
     // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
     $message->setRobot($notifiable->getName());
@@ -284,6 +311,9 @@ public function toDingTalkRobot($notifiable)
     // 添加一个或多个按钮
     $message->addButton('内容不错', 'https://www.dingtalk.com/');
     $message->addButton('不感兴趣', 'https://www.dingtalk.com/');
+
+    // 如果想让链接在 PC 端用系统默认浏览器打开可以这样
+    // $message->addButton('不感兴趣', 'https://www.dingtalk.com/', false);
     
     // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
     $message->setRobot($notifiable->getName());
@@ -312,6 +342,14 @@ public function toDingTalkRobot($notifiable)
         'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI',
         'https://www.dingtalk.com/'
     );
+
+    // 如果想让链接在 PC 端用系统默认浏览器打开可以这样
+    // $message->addLink(
+    //     '时代的火车向前开2',
+    //     'https://mp.weixin.qq.com/s?__biz=MzA4NjMwMTA2Ng==&mid=2650316842&idx=1&sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&scene=2&srcid=09189AnRJEdIiWVaKltFzNTw&from=timeline&isappinstalled=0&key=&ascene=2&uin=&devicetype=android-23&version=26031933&nettype=WIFI',
+    //     'https://www.dingtalk.com/',
+    //     false
+    // );
     
     // 这里可以指定机器人，如果不需要指定则默认使用名称为 default 的机器人
     $message->setRobot($notifiable->getName());
@@ -422,7 +460,9 @@ $message->setRobot('机器人名字');
 
 ## 鸣谢
 
-感谢 [王举](https://github.com/wowiwj)，他的 [wangju/ding-notice](https://github.com/wowiwj/ding-notice) 项目给予了我很多启发。本项目中的部分代码原形来自于该项目。 
+感谢 [王举](https://github.com/wowiwj)，他的 [wangju/ding-notice](https://github.com/wowiwj/ding-notice) 项目给予了我很多启发。本项目中的部分代码原形来自于该项目。
+
+感谢 [aolinver](https://github.com/aolinver)，他为本项目实现了部分可以设置链接的消息的链接在 PC 端用系统默认浏览器打开的功能。 
 
 
 ## 开源协议
