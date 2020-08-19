@@ -87,13 +87,14 @@ class ActionCardMessage extends Message
      *
      * @param string $singleTitle 单个按钮的方案。(设置此项和singleURL后btns无效。)
      * @param string $singleUrl   点击singleTitle按钮触发的URL
+     * @param bool   $pcSlide     链接在钉钉侧栏打开，false则在浏览器打开
      *
      * @return $this
      */
-    public function setSingle(string $singleTitle, string $singleUrl): self
+    public function setSingle(string $singleTitle, string $singleUrl, bool $pcSlide = true): self
     {
         $this->message['actionCard']['singleTitle'] = $singleTitle;
-        $this->message['actionCard']['singleURL'] = $singleUrl;
+        $this->message['actionCard']['singleURL'] = $this->getFinalUrl($singleUrl, $pcSlide);
         unset($this->message['actionCard']['btns']);
 
         return $this;
@@ -104,14 +105,15 @@ class ActionCardMessage extends Message
      *
      * @param string $title     按钮方案
      * @param string $actionUrl 点击按钮触发的URL
+     * @param bool   $pcSlide   链接在钉钉侧栏打开，false则在浏览器打开
      *
      * @return ActionCardMessage
      */
-    public function addButton(string $title, string $actionUrl): self
+    public function addButton(string $title, string $actionUrl, bool $pcSlide = true): self
     {
         $this->message['actionCard']['btns'][] = [
             'title'     => $title,
-            'actionURL' => $actionUrl,
+            'actionURL' => $this->getFinalUrl($actionUrl, $pcSlide),
         ];
         unset($this->message['actionCard']['singleTitle']);
         unset($this->message['actionCard']['singleURL']);
