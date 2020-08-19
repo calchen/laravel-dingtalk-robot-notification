@@ -19,6 +19,18 @@ abstract class Message
     protected $robot = 'default';
 
     /**
+     * 获取最终URL.
+     * @param  string  $url
+     * @param  bool  $pcSlide
+     *
+     * @return string
+     */
+    public function getFinalUrl($url, $pcSlide = true): string
+    {
+        return sprintf('dingtalk://dingtalkclient/page/link?url=%s&pc_slide=%s', urlencode($url), $pcSlide ? 'true' : 'false');
+    }
+
+    /**
      * 获取消息请求的请求体内容.
      *
      * @return array
