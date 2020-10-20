@@ -10,6 +10,7 @@ php:
   - 7.1.3  # Laravel 5.6 - 5.8
   - 7.2.0  # Laravel 6.x
   - 7.2.5  # Laravel 7.x
+  - 7.3.0  # Laravel 8.x
 
 env:
   - TESTBENCH_VERSION=~3.5.0  # Laravel 5.5.x
@@ -18,6 +19,7 @@ env:
   - TESTBENCH_VERSION=~3.8.0  # Laravel 5.8.x
   - TESTBENCH_VERSION=~4.0.0  # Laravel 6.x
   - TESTBENCH_VERSION=~5.0.0  # Laravel 7.x
+  - TESTBENCH_VERSION=~6.0.0  # Laravel 8.x
 
 matrix:
   exclude:
@@ -33,14 +35,23 @@ matrix:
       env: TESTBENCH_VERSION=~4.0.0
     - php: 7.0.0
       env: TESTBENCH_VERSION=~5.0.0
+    - php: 7.0.0
+      env: TESTBENCH_VERSION=~6.0.0
     # Laravel 6.x 及以后版本不支持 7.1.3
     - php: 7.1.3
       env: TESTBENCH_VERSION=~4.0.0
     - php: 7.1.3
       env: TESTBENCH_VERSION=~5.0.0
+    - php: 7.1.3
+      env: TESTBENCH_VERSION=~6.0.0
     # Laravel 7.x 及以后版本不支持 7.2.0
     - php: 7.2.0
       env: TESTBENCH_VERSION=~5.0.0
+    - php: 7.2.0
+      env: TESTBENCH_VERSION=~6.0.0
+    # Laravel 8.x 及以后版本不支持 7.2.5
+    - php: 7.2.5
+      env: TESTBENCH_VERSION=~6.0.0
 
     # 排除低版本的 Laravel 对高版本的 PHP 的测试
     # 排除 5.5
@@ -50,24 +61,37 @@ matrix:
       env: TESTBENCH_VERSION=~3.5.0
     - php: 7.2.5
       env: TESTBENCH_VERSION=~3.5.0
+    - php: 7.3.0
+      env: TESTBENCH_VERSION=~3.5.0
     # 排除 5.6
     - php: 7.2.0
       env: TESTBENCH_VERSION=~3.6.0
     - php: 7.2.5
+      env: TESTBENCH_VERSION=~3.6.0
+    - php: 7.3.0
       env: TESTBENCH_VERSION=~3.6.0
     # 排除 5.7
     - php: 7.2.0
       env: TESTBENCH_VERSION=~3.7.0
     - php: 7.2.5
       env: TESTBENCH_VERSION=~3.7.0
+    - php: 7.3.0
+      env: TESTBENCH_VERSION=~3.7.0
     # 排除 5.8
     - php: 7.2.0
       env: TESTBENCH_VERSION=~3.8.0
     - php: 7.2.5
       env: TESTBENCH_VERSION=~3.8.0
+    - php: 7.3.0
+      env: TESTBENCH_VERSION=~3.8.0
     # 排除 6.x
     - php: 7.2.5
       env: TESTBENCH_VERSION=~4.0.0
+    - php: 7.3.0
+      env: TESTBENCH_VERSION=~4.0.0
+    # 排除 7.x
+    - php: 7.3.0
+      env: TESTBENCH_VERSION=~5.0.0
 before_install:
   - cp ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/xdebug.ini
   - phpenv config-rm xdebug.ini
