@@ -1,5 +1,9 @@
 language: php
 
+dist: xenial
+
+os: linux
+
 cache:
   directories:
     - $HOME/.cache/pip
@@ -21,7 +25,7 @@ env:
   - TESTBENCH_VERSION=~5.0.0  # Laravel 7.x
   - TESTBENCH_VERSION=~6.0.0  # Laravel 8.x
 
-matrix:
+jobs:
   exclude:
     # 排除高版本的 Laravel 不支持的低版本 PHP 的测试
     # Laravel 5.6 及以后版本不支持 7.0.0
