@@ -1,7 +1,7 @@
 <h1 align="center"> laravel-dingtalk-robot-notification </h1>
 <p align="center"> 钉钉群机器人 Laravel/Lumen 扩展包 </p>
 <p align="center">  
-    <a href="https://github.styleci.io/repos/205573394">
+    <a href="https://github.styleci.io/repos/166196221">
         <img alt="Style CI" src="https://github.styleci.io/repos/166196221/shield?style=flat">
     </a>
     <a href="https://travis-ci.com/calchen/laravel-dingtalk-robot-notification">
