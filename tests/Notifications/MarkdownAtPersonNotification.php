@@ -33,9 +33,9 @@ class MarkdownAtPersonNotification extends Notification
     }
 
     /**
-     * @param Robot $notifiable
-     *
+     * @param  Robot  $notifiable
      * @return Message
+     *
      * @throws InvalidArgumentException
      */
     public function toDingTalkRobot($notifiable): Message

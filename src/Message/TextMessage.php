@@ -14,7 +14,7 @@ class TextMessage extends Message
     /**
      * TextMessage constructor.
      *
-     * @param string|null $content 消息内容
+     * @param  string|null  $content  消息内容
      */
     public function __construct(string $content = null)
     {
@@ -24,8 +24,7 @@ class TextMessage extends Message
     }
 
     /**
-     * @param string $content 消息内容
-     *
+     * @param  string  $content  消息内容
      * @return TextMessage
      */
     public function setMessage(string $content): self

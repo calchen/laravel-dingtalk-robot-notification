@@ -32,8 +32,7 @@ class TextAtAllNotification extends Notification
     }
 
     /**
-     * @param Robot $notifiable
-     *
+     * @param  Robot  $notifiable
      * @return Message
      */
     public function toDingTalkRobot($notifiable): Message

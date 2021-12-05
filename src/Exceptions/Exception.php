@@ -14,9 +14,9 @@ class Exception extends \Exception
     /**
      * 重写构造方法，直接根据 code 取错误消息.
      *
-     * @param string         $message
-     * @param int            $code
-     * @param Throwable|null $previous
+     * @param  string  $message
+     * @param  int  $code
+     * @param  Throwable|null  $previous
      */
     public function __construct($message = '', $code = 0, Throwable $previous = null)
     {

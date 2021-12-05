@@ -15,9 +15,9 @@ trait AtTrait
     /**
      * 通过手机号码指定“被@人列表”.
      *
-     * @param string|array $mobiles 被@人的手机号(在text内容里要有@手机号)
-     *
+     * @param  string|array  $mobiles  被@人的手机号(在text内容里要有@手机号)
      * @return Message
+     *
      * @throws InvalidArgumentException
      */
     public function at($mobiles): self

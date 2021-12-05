@@ -30,11 +30,10 @@ class FeedCardMessage extends Message
     /**
      * 增加链接.
      *
-     * @param string $title      单条信息文本
-     * @param string $messageUrl 点击单条信息到跳转链接
-     * @param string $picUrl     单条信息后面图片的URL
-     * @param bool   $pcSlide    链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
-     *
+     * @param  string  $title  单条信息文本
+     * @param  string  $messageUrl  点击单条信息到跳转链接
+     * @param  string  $picUrl  单条信息后面图片的URL
+     * @param  bool  $pcSlide  链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      * @return FeedCardMessage
      */
     public function addLink(string $title, string $messageUrl, string $picUrl, bool $pcSlide = true): self

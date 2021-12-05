@@ -12,11 +12,11 @@ class LinkMessage extends Message
     /**
      * LinkMessage constructor.
      *
-     * @param string|null $title      消息标题
-     * @param string|null $text       消息内容。如果太长只会部分展示
-     * @param string|null $messageUrl 点击消息跳转的 URL
-     * @param string      $picUrl     图片 URL
-     * @param bool        $pcSlide    链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
+     * @param  string|null  $title  消息标题
+     * @param  string|null  $text  消息内容。如果太长只会部分展示
+     * @param  string|null  $messageUrl  点击消息跳转的 URL
+     * @param  string  $picUrl  图片 URL
+     * @param  bool  $pcSlide  链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      */
     public function __construct(
         string $title = null,
@@ -31,12 +31,11 @@ class LinkMessage extends Message
     }
 
     /**
-     * @param string $title      消息标题
-     * @param string $text       消息内容。如果太长只会部分展示
-     * @param string $messageUrl 点击消息跳转的 URL
-     * @param string $picUrl     图片 URL
-     * @param bool   $pcSlide    链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
-     *
+     * @param  string  $title  消息标题
+     * @param  string  $text  消息内容。如果太长只会部分展示
+     * @param  string  $messageUrl  点击消息跳转的 URL
+     * @param  string  $picUrl  图片 URL
+     * @param  bool  $pcSlide  链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      * @return LinkMessage
      */
     public function setMessage(

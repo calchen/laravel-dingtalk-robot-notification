@@ -31,10 +31,10 @@ class ActionCardMessage extends Message
     /**
      * ActionCardMessage constructor.
      *
-     * @param string|null $title          首屏会话透出的展示内容
-     * @param string|null $text           markdown 格式的消息
-     * @param int|null    $hideAvatar     0-按钮竖直排列，1-按钮横向排列
-     * @param int|null    $btnOrientation 0-正常发消息者头像,1-隐藏发消息者头像
+     * @param  string|null  $title  首屏会话透出的展示内容
+     * @param  string|null  $text  markdown 格式的消息
+     * @param  int|null  $hideAvatar  0-按钮竖直排列，1-按钮横向排列
+     * @param  int|null  $btnOrientation  0-正常发消息者头像,1-隐藏发消息者头像
      *
      * @throws InvalidConfigurationException
      */
@@ -48,12 +48,12 @@ class ActionCardMessage extends Message
     /**
      *  ActionCard 的整体跳转和独立跳转两种类型中 title text hideAvatar btnOrientation 都是共同拥有的.
      *
-     * @param string   $title          首屏会话透出的展示内容
-     * @param string   $text           markdown 格式的消息
-     * @param int|null $hideAvatar     0-按钮竖直排列，1-按钮横向排列
-     * @param int|null $btnOrientation 0-正常发消息者头像,1-隐藏发消息者头像
-     *
+     * @param  string  $title  首屏会话透出的展示内容
+     * @param  string  $text  markdown 格式的消息
+     * @param  int|null  $hideAvatar  0-按钮竖直排列，1-按钮横向排列
+     * @param  int|null  $btnOrientation  0-正常发消息者头像,1-隐藏发消息者头像
      * @return ActionCardMessage
+     *
      * @throws InvalidConfigurationException
      */
     public function setMessage(string $title, string $text, $hideAvatar = null, $btnOrientation = null): self
@@ -85,10 +85,9 @@ class ActionCardMessage extends Message
     /**
      * 设置整体跳转类型参数，与独立跳转互斥.
      *
-     * @param string $singleTitle 单个按钮的方案。(设置此项和singleURL后btns无效。)
-     * @param string $singleUrl   点击singleTitle按钮触发的URL
-     * @param bool   $pcSlide     链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
-     *
+     * @param  string  $singleTitle  单个按钮的方案。(设置此项和singleURL后btns无效。)
+     * @param  string  $singleUrl  点击singleTitle按钮触发的URL
+     * @param  bool  $pcSlide  链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      * @return $this
      */
     public function setSingle(string $singleTitle, string $singleUrl, bool $pcSlide = true): self
@@ -103,10 +102,9 @@ class ActionCardMessage extends Message
     /**
      * 设置独立跳转类型按钮参数，可设置多个，与整体跳转互斥.
      *
-     * @param string $title     按钮方案
-     * @param string $actionUrl 点击按钮触发的URL
-     * @param bool   $pcSlide   链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
-     *
+     * @param  string  $title  按钮方案
+     * @param  string  $actionUrl  点击按钮触发的URL
+     * @param  bool  $pcSlide  链接是否在 PC 端侧栏打开，true 在 PC 端侧栏打开；false 在系统默认浏览器
      * @return ActionCardMessage
      */
     public function addButton(string $title, string $actionUrl, bool $pcSlide = true): self

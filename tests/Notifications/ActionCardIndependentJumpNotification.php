@@ -33,9 +33,9 @@ class ActionCardIndependentJumpNotification extends Notification
     }
 
     /**
-     * @param Robot $notifiable
-     *
+     * @param  Robot  $notifiable
      * @return Message
+     *
      * @throws InvalidConfigurationException
      */
     public function toDingTalkRobot($notifiable): Message

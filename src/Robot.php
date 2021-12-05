@@ -31,7 +31,7 @@ class Robot
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
      */
     public function setName(string $name)
     {

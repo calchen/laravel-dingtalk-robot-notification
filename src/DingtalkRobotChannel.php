@@ -17,8 +17,8 @@ class DingtalkRobotChannel
     /**
      * Send the given notification.
      *
-     * @param              $notifiable
-     * @param Notification $notification
+     * @param  $notifiable
+     * @param  Notification  $notification
      *
      * @throws Exception
      */

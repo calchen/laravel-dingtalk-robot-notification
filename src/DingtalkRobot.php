@@ -61,9 +61,9 @@ class DingtalkRobot
     /**
      * 指定机器人名称，默认为 default.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return $this
+     *
      * @throws Exception
      */
     public function robot($name = 'default'): self
@@ -126,9 +126,9 @@ class DingtalkRobot
     /**
      * 将创建好的 message 对象保存到当前对象中以便后续发送
      *
-     * @param Message $message
-     *
+     * @param  Message  $message
      * @return $this
+     *
      * @throws Exception
      */
     public function setMessage(Message $message): self
@@ -178,6 +178,7 @@ class DingtalkRobot
      * 发起请求，返回的内容与直接调用钉钉接口返回的内容一致.
      *
      * @return array
+     *
      * @throws Exception
      */
     public function send(): array

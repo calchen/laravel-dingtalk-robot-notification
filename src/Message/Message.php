@@ -31,8 +31,7 @@ abstract class Message
     /**
      * 设置接受消息的机器人名称.
      *
-     * @param string $robot
-     *
+     * @param  string  $robot
      * @return Message
      */
     public function setRobot(string $robot): self
@@ -57,9 +56,8 @@ abstract class Message
      *
      * @link https://ding-doc.dingtalk.com/doc#/serverapi2/iat9q8/e300ae98
      *
-     * @param string $url
-     * @param bool   $pcSlide
-     *
+     * @param  string  $url
+     * @param  bool  $pcSlide
      * @return string
      */
     public function getFinalUrl(string $url, bool $pcSlide = true): string
