@@ -99,7 +99,6 @@ jobs:
 before_install:
   - cp ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/xdebug.ini
   - phpenv config-rm xdebug.ini
-  - composer global require hirak/prestissimo --update-no-dev
   - composer require "orchestra/testbench:${TESTBENCH_VERSION}" --no-update --prefer-dist
 
 install: travis_retry composer install --no-interaction --prefer-dist
